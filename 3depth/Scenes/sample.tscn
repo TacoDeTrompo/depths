@@ -1,10 +1,14 @@
-[gd_scene load_steps=11 format=3 uid="uid://bnf205720kfvk"]
+[gd_scene load_steps=32 format=3 uid="uid://bnf205720kfvk"]
 
 [ext_resource type="Shader" uid="uid://v1p8b2wwrsqn" path="res://Shaders/CrossSectionEffect/fillerB.gdshader" id="1_jbwiv"]
 [ext_resource type="Shader" uid="uid://tvkec53jbjgt" path="res://Shaders/CrossSectionEffect/filler.gdshader" id="1_wg51d"]
 [ext_resource type="Texture2D" uid="uid://bxh8g0hpajvvu" path="res://Textures/platforms_top.png" id="2_lf21a"]
 [ext_resource type="Script" uid="uid://cp4fghaloyses" path="res://Scripts/CrossSectionEffect/CutFiller.gd" id="3_2b2du"]
 [ext_resource type="Shader" uid="uid://bjyf4o5jhjee0" path="res://Shaders/CrossSectionEffect/mask.gdshader" id="5_i5e0t"]
+[ext_resource type="Script" uid="uid://8u0vt2ewhfs4" path="res://Scripts/PlaneZAxis.gd" id="6_822sy"]
+[ext_resource type="Texture2D" uid="uid://bif43by4tbd76" path="res://Textures/samus sprite.png" id="6_fw2c8"]
+[ext_resource type="Script" uid="uid://cp0aq32jtaidl" path="res://Scripts/Player/Player.gd" id="6_v2cka"]
+[ext_resource type="Script" uid="uid://xl6fmx6xqjly" path="res://Scripts/Z-handler.gd" id="9_v42nc"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fw2c8"]
 render_priority = 0
@@ -31,199 +35,169 @@ shader_parameter/border_color = Color(1, 1, 1, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_2b2du"]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_v2cka"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fw2c8"]
+render_priority = 0
+shader = ExtResource("5_i5e0t")
+shader_parameter/mask_color = Color(0, 1, 0, 1)
+shader_parameter/_albedo = ExtResource("2_lf21a")
+shader_parameter/use_texture = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_jbwiv"]
+
+[sub_resource type="SeparationRayShape3D" id="SeparationRayShape3D_i5e0t"]
+length = 0.234551
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_822sy"]
+atlas = ExtResource("6_fw2c8")
+region = Rect2(42, 0, 42, 49)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v42nc"]
+atlas = ExtResource("6_fw2c8")
+region = Rect2(84, 0, 42, 49)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qx5hm"]
+atlas = ExtResource("6_fw2c8")
+region = Rect2(126, 0, 42, 49)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_um3ie"]
+atlas = ExtResource("6_fw2c8")
+region = Rect2(168, 0, 42, 49)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s66ab"]
+atlas = ExtResource("6_fw2c8")
+region = Rect2(0, 49, 42, 49)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i2ao8"]
+atlas = ExtResource("6_fw2c8")
+region = Rect2(42, 49, 42, 49)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6umt6"]
+atlas = ExtResource("6_fw2c8")
+region = Rect2(84, 49, 42, 49)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4cawp"]
+atlas = ExtResource("6_fw2c8")
+region = Rect2(126, 49, 42, 49)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qvors"]
+atlas = ExtResource("6_fw2c8")
+region = Rect2(168, 49, 42, 49)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_60vn1"]
+atlas = ExtResource("6_fw2c8")
+region = Rect2(210, 49, 42, 49)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_st8pv"]
+atlas = ExtResource("6_fw2c8")
+region = Rect2(252, 49, 42, 49)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kohly"]
+atlas = ExtResource("6_fw2c8")
+region = Rect2(294, 49, 42, 49)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bujtj"]
+atlas = ExtResource("6_fw2c8")
+region = Rect2(336, 49, 42, 49)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_01r4k"]
+atlas = ExtResource("6_fw2c8")
+region = Rect2(378, 49, 42, 49)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fw2c8"]
+animations = [{
+"frames": [{
+"duration": 5.0,
+"texture": SubResource("AtlasTexture_822sy")
+}, {
+"duration": 5.0,
+"texture": SubResource("AtlasTexture_v42nc")
+}, {
+"duration": 5.0,
+"texture": SubResource("AtlasTexture_qx5hm")
+}, {
+"duration": 5.0,
+"texture": SubResource("AtlasTexture_um3ie")
+}],
+"loop": true,
+"name": &"default",
+"speed": 30.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s66ab")
+}, {
+"duration": 1.5,
+"texture": SubResource("AtlasTexture_i2ao8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6umt6")
+}, {
+"duration": 1.5,
+"texture": SubResource("AtlasTexture_4cawp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qvors")
+}, {
+"duration": 1.5,
+"texture": SubResource("AtlasTexture_60vn1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_st8pv")
+}, {
+"duration": 1.5,
+"texture": SubResource("AtlasTexture_kohly")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bujtj")
+}, {
+"duration": 1.5,
+"texture": SubResource("AtlasTexture_01r4k")
+}],
+"loop": true,
+"name": &"run",
+"speed": 30.0
+}]
+
 [node name="Node3D" type="Node3D"]
 
-[node name="sampleCutPlane" type="MeshInstance3D" parent="."]
-unique_name_in_owner = true
-transform = Transform3D(3.8646, 0, 0, 0, -4.37114e-08, -2.71028, 0, 0.999999, -1.1847e-07, -0.00813007, -0.00905013, 2.64703)
-material_override = SubResource("ShaderMaterial_fw2c8")
-mesh = SubResource("PlaneMesh_jbwiv")
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
 
-[node name="Layer 1" type="Node3D" parent="."]
-
-[node name="Cube7" type="MeshInstance3D" parent="Layer 1"]
-transform = Transform3D(-0.0377426, 0.999288, 0, -0.999288, -0.0377426, 0, 0, 0, 1, -2.90975, 2.06253, -0.0221393)
-material_override = SubResource("ShaderMaterial_lf21a")
-mesh = SubResource("BoxMesh_2b2du")
-skeleton = NodePath(".")
-script = ExtResource("3_2b2du")
-
-[node name="Cube8" type="MeshInstance3D" parent="Layer 1"]
-transform = Transform3D(-0.0377426, 0.999288, 0, -0.999288, -0.0377426, 0, 0, 0, 1, -3.00112, 0.0683256, -0.0128691)
-material_override = SubResource("ShaderMaterial_lf21a")
-mesh = SubResource("BoxMesh_2b2du")
-skeleton = NodePath("../Cube2")
-script = ExtResource("3_2b2du")
-
-[node name="Cube9" type="MeshInstance3D" parent="Layer 1"]
-transform = Transform3D(-0.0377426, 0.999288, 0, -0.999288, -0.0377426, 0, 0, 0, 1, -2.95827, 1.06644, -0.0147076)
-material_override = SubResource("ShaderMaterial_lf21a")
-mesh = SubResource("BoxMesh_2b2du")
-skeleton = NodePath(".")
-script = ExtResource("3_2b2du")
-
-[node name="Cube4" type="MeshInstance3D" parent="Layer 1"]
-transform = Transform3D(-0.0163704, -0.999866, 0, 0.999866, -0.0163704, 0, 0, 0, 1, 1.00619, 0.0135371, -0.0147855)
-material_override = SubResource("ShaderMaterial_lf21a")
-mesh = SubResource("BoxMesh_2b2du")
-skeleton = NodePath(".")
-script = ExtResource("3_2b2du")
-
-[node name="Cube5" type="MeshInstance3D" parent="Layer 1"]
-transform = Transform3D(-0.0163704, -0.999866, 0, 0.999866, -0.0163704, 0, 0, 0, 1, 0.989547, 2.00976, -0.00551534)
-material_override = SubResource("ShaderMaterial_lf21a")
-mesh = SubResource("BoxMesh_2b2du")
-skeleton = NodePath("../Cube2")
-script = ExtResource("3_2b2du")
-
-[node name="Cube6" type="MeshInstance3D" parent="Layer 1"]
-transform = Transform3D(-0.0163704, -0.999866, 0, 0.999866, -0.0163704, 0, 0, 0, 1, 1.00075, 1.0108, -0.00735378)
-material_override = SubResource("ShaderMaterial_lf21a")
-mesh = SubResource("BoxMesh_2b2du")
-skeleton = NodePath(".")
-script = ExtResource("3_2b2du")
-
-[node name="Cube" type="MeshInstance3D" parent="Layer 1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.99487, 0.0211975, -0.0111086)
-material_override = SubResource("ShaderMaterial_lf21a")
-mesh = SubResource("BoxMesh_2b2du")
-skeleton = NodePath("../Cube2")
-script = ExtResource("3_2b2du")
-
-[node name="Cube3" type="MeshInstance3D" parent="Layer 1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00136542, 0.00515467, -0.00183845)
+[node name="Cube" type="MeshInstance3D" parent="StaticBody3D"]
 material_override = SubResource("ShaderMaterial_lf21a")
 mesh = SubResource("BoxMesh_2b2du")
 skeleton = NodePath("../..")
 script = ExtResource("3_2b2du")
 
-[node name="Cube2" type="MeshInstance3D" parent="Layer 1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.997651, 0.0103093, -0.00367689)
-material_override = SubResource("ShaderMaterial_lf21a")
-mesh = SubResource("BoxMesh_2b2du")
-skeleton = NodePath("../Cube3")
-script = ExtResource("3_2b2du")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_v2cka")
 
-[node name="Layer 2" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.06537)
+[node name="sampleCutPlane" type="MeshInstance3D" parent="." node_paths=PackedStringArray("zAxisHandler")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -0.999999, 0, 0.999999, -4.37114e-08, 0, 0, -0.0333861)
+material_override = SubResource("ShaderMaterial_fw2c8")
+mesh = SubResource("PlaneMesh_jbwiv")
+script = ExtResource("6_822sy")
+zAxisHandler = NodePath("../Z-Axis")
 
-[node name="Cube7" type="MeshInstance3D" parent="Layer 2"]
-transform = Transform3D(-0.0377426, 0.999288, 0, -0.999288, -0.0377426, 0, 0, 0, 1, -2.90975, 2.06253, -0.0221393)
-material_override = SubResource("ShaderMaterial_lf21a")
-mesh = SubResource("BoxMesh_2b2du")
-skeleton = NodePath(".")
-script = ExtResource("3_2b2du")
+[node name="CharacterBody3D" type="CharacterBody3D" parent="." node_paths=PackedStringArray("zAxisHandler")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.772, -0.04)
+script = ExtResource("6_v2cka")
+zAxisHandler = NodePath("../Z-Axis")
 
-[node name="Cube8" type="MeshInstance3D" parent="Layer 2"]
-transform = Transform3D(-0.0377426, 0.999288, 0, -0.999288, -0.0377426, 0, 0, 0, 1, -3.00112, 0.0683256, -0.0128691)
-material_override = SubResource("ShaderMaterial_lf21a")
-mesh = SubResource("BoxMesh_2b2du")
-skeleton = NodePath("../Cube2")
-script = ExtResource("3_2b2du")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, -0.000226899, -1, 0, 1, -0.000226899, 0, 0, 0)
+shape = SubResource("SeparationRayShape3D_i5e0t")
 
-[node name="Cube9" type="MeshInstance3D" parent="Layer 2"]
-transform = Transform3D(-0.0377426, 0.999288, 0, -0.999288, -0.0377426, 0, 0, 0, 1, -2.95827, 1.06644, -0.0147076)
-material_override = SubResource("ShaderMaterial_lf21a")
-mesh = SubResource("BoxMesh_2b2du")
-skeleton = NodePath(".")
-script = ExtResource("3_2b2du")
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="CharacterBody3D"]
+texture_filter = 0
+sprite_frames = SubResource("SpriteFrames_fw2c8")
+frame_progress = 0.379507
 
-[node name="Cube4" type="MeshInstance3D" parent="Layer 2"]
-transform = Transform3D(-0.0163704, -0.999866, 0, 0.999866, -0.0163704, 0, 0, 0, 1, 1.00619, 0.0135371, -0.0147855)
-material_override = SubResource("ShaderMaterial_lf21a")
-mesh = SubResource("BoxMesh_2b2du")
-skeleton = NodePath(".")
-script = ExtResource("3_2b2du")
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.929191, 0.132158, -0.345165, 0, 0.933887, 0.357569, 0.369601, -0.33225, 0.867759, -0.491138, 1.2983, 1.67067)
+size = 1.96208
 
-[node name="Cube5" type="MeshInstance3D" parent="Layer 2"]
-transform = Transform3D(-0.0163704, -0.999866, 0, 0.999866, -0.0163704, 0, 0, 0, 1, 0.989547, 2.00976, -0.00551534)
-material_override = SubResource("ShaderMaterial_lf21a")
-mesh = SubResource("BoxMesh_2b2du")
-skeleton = NodePath("../Cube2")
-script = ExtResource("3_2b2du")
-
-[node name="Cube6" type="MeshInstance3D" parent="Layer 2"]
-transform = Transform3D(-0.0163704, -0.999866, 0, 0.999866, -0.0163704, 0, 0, 0, 1, 1.00075, 1.0108, -0.00735378)
-material_override = SubResource("ShaderMaterial_lf21a")
-mesh = SubResource("BoxMesh_2b2du")
-skeleton = NodePath(".")
-script = ExtResource("3_2b2du")
-
-[node name="Cube" type="MeshInstance3D" parent="Layer 2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.99487, 0.0211975, -0.0111086)
-material_override = SubResource("ShaderMaterial_lf21a")
-mesh = SubResource("BoxMesh_2b2du")
-skeleton = NodePath("../Cube2")
-script = ExtResource("3_2b2du")
-
-[node name="Cube3" type="MeshInstance3D" parent="Layer 2"]
-transform = Transform3D(1, 0, 0, 0, 0.680324, 0.732911, 0, -0.732911, 0.680324, 0.00136542, 0.00515467, 0.129143)
-material_override = SubResource("ShaderMaterial_lf21a")
-mesh = SubResource("BoxMesh_2b2du")
-script = ExtResource("3_2b2du")
-
-[node name="Cube2" type="MeshInstance3D" parent="Layer 2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.997651, 0.0103093, -0.00367689)
-material_override = SubResource("ShaderMaterial_lf21a")
-mesh = SubResource("BoxMesh_2b2du")
-skeleton = NodePath("../Cube3")
-script = ExtResource("3_2b2du")
-
-[node name="Layer 3" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.11178)
-
-[node name="Cube7" type="MeshInstance3D" parent="Layer 3"]
-transform = Transform3D(-0.0377426, 0.999288, 0, -0.999288, -0.0377426, 0, 0, 0, 1, -2.90975, 2.06253, -0.0221393)
-material_override = SubResource("ShaderMaterial_lf21a")
-mesh = SubResource("BoxMesh_2b2du")
-skeleton = NodePath(".")
-script = ExtResource("3_2b2du")
-
-[node name="Cube8" type="MeshInstance3D" parent="Layer 3"]
-transform = Transform3D(-0.0377426, 0.999288, 0, -0.999288, -0.0377426, 0, 0, 0, 1, -3.00112, 0.0683256, -0.0128691)
-material_override = SubResource("ShaderMaterial_lf21a")
-mesh = SubResource("BoxMesh_2b2du")
-skeleton = NodePath("../Cube2")
-script = ExtResource("3_2b2du")
-
-[node name="Cube9" type="MeshInstance3D" parent="Layer 3"]
-transform = Transform3D(-0.0377426, 0.999288, 0, -0.999288, -0.0377426, 0, 0, 0, 1, -2.95827, 1.06644, -0.0147076)
-material_override = SubResource("ShaderMaterial_lf21a")
-mesh = SubResource("BoxMesh_2b2du")
-skeleton = NodePath(".")
-script = ExtResource("3_2b2du")
-
-[node name="Cube4" type="MeshInstance3D" parent="Layer 3"]
-transform = Transform3D(-0.0163704, -0.999866, 0, 0.999866, -0.0163704, 0, 0, 0, 1, 1.00619, 0.0135371, -0.0147855)
-material_override = SubResource("ShaderMaterial_lf21a")
-mesh = SubResource("BoxMesh_2b2du")
-skeleton = NodePath(".")
-script = ExtResource("3_2b2du")
-
-[node name="Cube5" type="MeshInstance3D" parent="Layer 3"]
-transform = Transform3D(-0.0163704, -0.999866, 0, 0.999866, -0.0163704, 0, 0, 0, 1, 0.989547, 2.00976, -0.00551534)
-material_override = SubResource("ShaderMaterial_lf21a")
-mesh = SubResource("BoxMesh_2b2du")
-skeleton = NodePath("../Cube2")
-script = ExtResource("3_2b2du")
-
-[node name="Cube6" type="MeshInstance3D" parent="Layer 3"]
-transform = Transform3D(-0.0163704, -0.999866, 0, 0.999866, -0.0163704, 0, 0, 0, 1, 1.00075, 1.0108, -0.00735378)
-material_override = SubResource("ShaderMaterial_lf21a")
-mesh = SubResource("BoxMesh_2b2du")
-skeleton = NodePath(".")
-script = ExtResource("3_2b2du")
-
-[node name="Cube" type="MeshInstance3D" parent="Layer 3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.99487, 0.0211975, -0.0111086)
-material_override = SubResource("ShaderMaterial_lf21a")
-mesh = SubResource("BoxMesh_2b2du")
-skeleton = NodePath("../Cube2")
-script = ExtResource("3_2b2du")
-
-[node name="Cube2" type="MeshInstance3D" parent="Layer 3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.997651, 0.0103093, -0.00367689)
-material_override = SubResource("ShaderMaterial_lf21a")
-mesh = SubResource("BoxMesh_2b2du")
-skeleton = NodePath("")
-script = ExtResource("3_2b2du")
+[node name="Z-Axis" type="Node" parent="."]
+script = ExtResource("9_v42nc")
