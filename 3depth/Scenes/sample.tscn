@@ -10,15 +10,6 @@
 [ext_resource type="Script" uid="uid://cp0aq32jtaidl" path="res://Scripts/Player/Player.gd" id="6_v2cka"]
 [ext_resource type="Script" uid="uid://xl6fmx6xqjly" path="res://Scripts/Z-handler.gd" id="9_v42nc"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_fw2c8"]
-render_priority = 0
-shader = ExtResource("5_i5e0t")
-shader_parameter/mask_color = Color(0, 1, 0, 1)
-shader_parameter/_albedo = ExtResource("2_lf21a")
-shader_parameter/use_texture = true
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_jbwiv"]
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2b2du"]
 render_priority = 1
 shader = ExtResource("1_jbwiv")
@@ -182,7 +173,7 @@ script = ExtResource("6_822sy")
 zAxisHandler = NodePath("../Z-Axis")
 
 [node name="CharacterBody3D" type="CharacterBody3D" parent="." node_paths=PackedStringArray("zAxisHandler")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.772, -0.04)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.42761, -0.04)
 script = ExtResource("6_v2cka")
 zAxisHandler = NodePath("../Z-Axis")
 
