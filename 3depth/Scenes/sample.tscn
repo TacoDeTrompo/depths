@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://bnf205720kfvk"]
+[gd_scene load_steps=36 format=3 uid="uid://bnf205720kfvk"]
 
 [ext_resource type="Shader" uid="uid://v1p8b2wwrsqn" path="res://Shaders/CrossSectionEffect/fillerB.gdshader" id="1_jbwiv"]
 [ext_resource type="Shader" uid="uid://tvkec53jbjgt" path="res://Shaders/CrossSectionEffect/filler.gdshader" id="1_wg51d"]
@@ -7,6 +7,7 @@
 [ext_resource type="Shader" uid="uid://bjyf4o5jhjee0" path="res://Shaders/CrossSectionEffect/mask.gdshader" id="5_i5e0t"]
 [ext_resource type="Script" uid="uid://8u0vt2ewhfs4" path="res://Scripts/PlaneZAxis.gd" id="6_822sy"]
 [ext_resource type="Texture2D" uid="uid://bif43by4tbd76" path="res://Textures/samus sprite.png" id="6_fw2c8"]
+[ext_resource type="Texture2D" uid="uid://blc00itek3tex" path="res://Textures/green.png" id="6_qx5hm"]
 [ext_resource type="Script" uid="uid://cp0aq32jtaidl" path="res://Scripts/Player/Player.gd" id="6_v2cka"]
 [ext_resource type="Script" uid="uid://xl6fmx6xqjly" path="res://Scripts/Z-handler.gd" id="9_v42nc"]
 
@@ -28,11 +29,28 @@ shader_parameter/border_color = Color(1, 1, 1, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_v2cka"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_um3ie"]
+render_priority = 1
+shader = ExtResource("1_jbwiv")
+shader_parameter/color = Color(1, 0, 1, 1)
+shader_parameter/fillplane = Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_s66ab"]
+render_priority = 0
+next_pass = SubResource("ShaderMaterial_um3ie")
+shader = ExtResource("1_wg51d")
+shader_parameter/fillplane = Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
+shader_parameter/_albedo = ExtResource("2_lf21a")
+shader_parameter/border_color = Color(1, 1, 1, 1)
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fw2c8"]
 render_priority = 0
 shader = ExtResource("5_i5e0t")
-shader_parameter/mask_color = Color(0, 1, 0, 1)
-shader_parameter/_albedo = ExtResource("2_lf21a")
+shader_parameter/mask_color_1 = Color(0, 1, 0, 1)
+shader_parameter/mask_color_2 = Color(1, 0, 1, 1)
+shader_parameter/mask_color_3 = Color(0, 0, 0, 1)
+shader_parameter/tex_1 = ExtResource("2_lf21a")
+shader_parameter/tex_2 = ExtResource("6_qx5hm")
 shader_parameter/use_texture = true
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_jbwiv"]
@@ -158,18 +176,32 @@ size = Vector3(0.121613, 0.336304, 0.00732422)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 
-[node name="Cube" type="MeshInstance3D" parent="StaticBody3D"]
+[node name="Cube" type="MeshInstance3D" parent="StaticBody3D" node_paths=PackedStringArray("fillplaneVar")]
 material_override = SubResource("ShaderMaterial_lf21a")
 mesh = SubResource("BoxMesh_2b2du")
 skeleton = NodePath("../..")
 script = ExtResource("3_2b2du")
+fillplaneVar = NodePath("../../sampleCutPlane")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
 shape = SubResource("BoxShape3D_v2cka")
 
+[node name="StaticBody3D" type="StaticBody3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0023, 0, 0)
+
+[node name="Cube" type="MeshInstance3D" parent="StaticBody3D/StaticBody3D" node_paths=PackedStringArray("fillplaneVar")]
+material_override = SubResource("ShaderMaterial_s66ab")
+mesh = SubResource("BoxMesh_2b2du")
+skeleton = NodePath("../..")
+script = ExtResource("3_2b2du")
+fillplaneVar = NodePath("../../../sampleCutPlane")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D/StaticBody3D"]
+shape = SubResource("BoxShape3D_v2cka")
+
 [node name="sampleCutPlane" type="MeshInstance3D" parent="." node_paths=PackedStringArray("zAxisHandler")]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -0.999999, 0, 0.999999, -4.37114e-08, 0, 0, 0)
+transform = Transform3D(1.92974, 0, 0, 0, -4.37114e-08, -0.999999, 0, 0.999999, -4.37114e-08, 0, -0.0858736, 0.0145458)
 material_override = SubResource("ShaderMaterial_fw2c8")
 mesh = SubResource("PlaneMesh_jbwiv")
 script = ExtResource("6_822sy")
@@ -183,7 +215,7 @@ zAxisHandler = NodePath("../Z-Axis")
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="CharacterBody3D"]
 texture_filter = 0
 sprite_frames = SubResource("SpriteFrames_fw2c8")
-frame_progress = 0.299662
+frame_progress = 0.151966
 
 [node name="SeparationRayFloor" type="CollisionShape3D" parent="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, -0.000226899, -1, 0, 1, -0.000226899, 0, 0, 0)
@@ -194,7 +226,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0232391, 0.0285034, 0)
 shape = SubResource("BoxShape3D_v42nc")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(0.929191, 0.132158, -0.345165, 0, 0.933887, 0.357569, 0.369601, -0.33225, 0.867759, -0.491138, 1.2983, 1.67067)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.158183, 1.671)
+projection = 1
 size = 1.96208
 
 [node name="Z-Axis" type="Node" parent="."]
