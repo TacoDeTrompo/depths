@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://bnf205720kfvk"]
+[gd_scene load_steps=33 format=3 uid="uid://bnf205720kfvk"]
 
 [ext_resource type="Shader" uid="uid://v1p8b2wwrsqn" path="res://Shaders/CrossSectionEffect/fillerB.gdshader" id="1_jbwiv"]
 [ext_resource type="Shader" uid="uid://tvkec53jbjgt" path="res://Shaders/CrossSectionEffect/filler.gdshader" id="1_wg51d"]
@@ -36,9 +36,6 @@ shader_parameter/_albedo = ExtResource("2_lf21a")
 shader_parameter/use_texture = true
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_jbwiv"]
-
-[sub_resource type="SeparationRayShape3D" id="SeparationRayShape3D_i5e0t"]
-length = 0.234551
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_822sy"]
 atlas = ExtResource("6_fw2c8")
@@ -151,6 +148,12 @@ animations = [{
 "speed": 30.0
 }]
 
+[sub_resource type="SeparationRayShape3D" id="SeparationRayShape3D_i5e0t"]
+length = 0.234551
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_v42nc"]
+size = Vector3(0.121613, 0.336304, 0.00732422)
+
 [node name="Node3D" type="Node3D"]
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
@@ -166,25 +169,29 @@ shape = SubResource("BoxShape3D_v2cka")
 
 [node name="sampleCutPlane" type="MeshInstance3D" parent="." node_paths=PackedStringArray("zAxisHandler")]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -0.999999, 0, 0.999999, -4.37114e-08, 0, 0, -0.0333861)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -0.999999, 0, 0.999999, -4.37114e-08, 0, 0, 0)
 material_override = SubResource("ShaderMaterial_fw2c8")
 mesh = SubResource("PlaneMesh_jbwiv")
 script = ExtResource("6_822sy")
 zAxisHandler = NodePath("../Z-Axis")
 
 [node name="CharacterBody3D" type="CharacterBody3D" parent="." node_paths=PackedStringArray("zAxisHandler")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.772, -0.04)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.772, 0)
 script = ExtResource("6_v2cka")
 zAxisHandler = NodePath("../Z-Axis")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
-transform = Transform3D(1, 0, 0, 0, -0.000226899, -1, 0, 1, -0.000226899, 0, 0, 0)
-shape = SubResource("SeparationRayShape3D_i5e0t")
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="CharacterBody3D"]
 texture_filter = 0
 sprite_frames = SubResource("SpriteFrames_fw2c8")
-frame_progress = 0.379507
+frame_progress = 0.299662
+
+[node name="SeparationRayFloor" type="CollisionShape3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, -0.000226899, -1, 0, 1, -0.000226899, 0, 0, 0)
+shape = SubResource("SeparationRayShape3D_i5e0t")
+
+[node name="BodyCollision" type="CollisionShape3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0232391, 0.0285034, 0)
+shape = SubResource("BoxShape3D_v42nc")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(0.929191, 0.132158, -0.345165, 0, 0.933887, 0.357569, 0.369601, -0.33225, 0.867759, -0.491138, 1.2983, 1.67067)
