@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://bpiohsvjyxmxa"]
+[gd_scene load_steps=15 format=3 uid="uid://f66crnu0vaca"]
 
 [ext_resource type="Shader" uid="uid://v1p8b2wwrsqn" path="res://Shaders/CrossSectionEffect/fillerB.gdshader" id="1_evltv"]
 [ext_resource type="Shader" uid="uid://tvkec53jbjgt" path="res://Shaders/CrossSectionEffect/filler.gdshader" id="2_vtgv7"]
@@ -6,8 +6,7 @@
 [ext_resource type="Script" uid="uid://cp4fghaloyses" path="res://Scripts/CrossSectionEffect/CutFiller.gd" id="4_fsk2n"]
 [ext_resource type="Shader" uid="uid://bjyf4o5jhjee0" path="res://Shaders/CrossSectionEffect/mask.gdshader" id="5_lj3dt"]
 [ext_resource type="Script" uid="uid://8u0vt2ewhfs4" path="res://Scripts/PlaneZAxis.gd" id="6_lj3dt"]
-[ext_resource type="Script" uid="uid://cp0aq32jtaidl" path="res://Scripts/Player/Player.gd" id="7_0jtpg"]
-[ext_resource type="Texture2D" uid="uid://bif43by4tbd76" path="res://Textures/samus sprite.png" id="8_irc8b"]
+[ext_resource type="PackedScene" uid="uid://cr0xponn76q5v" path="res://Scripts/Player/Player.tscn" id="7_fsk2n"]
 [ext_resource type="Script" uid="uid://xl6fmx6xqjly" path="res://Scripts/Z-handler.gd" id="9_2ts83"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2b2du"]
@@ -37,123 +36,33 @@ shader_parameter/use_texture = true
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_jbwiv"]
 
-[sub_resource type="SeparationRayShape3D" id="SeparationRayShape3D_i5e0t"]
-length = 0.234551
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_822sy"]
-atlas = ExtResource("8_irc8b")
-region = Rect2(42, 0, 42, 49)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_v42nc"]
-atlas = ExtResource("8_irc8b")
-region = Rect2(84, 0, 42, 49)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_qx5hm"]
-atlas = ExtResource("8_irc8b")
-region = Rect2(126, 0, 42, 49)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_um3ie"]
-atlas = ExtResource("8_irc8b")
-region = Rect2(168, 0, 42, 49)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_s66ab"]
-atlas = ExtResource("8_irc8b")
-region = Rect2(0, 49, 42, 49)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_i2ao8"]
-atlas = ExtResource("8_irc8b")
-region = Rect2(42, 49, 42, 49)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_6umt6"]
-atlas = ExtResource("8_irc8b")
-region = Rect2(84, 49, 42, 49)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_4cawp"]
-atlas = ExtResource("8_irc8b")
-region = Rect2(126, 49, 42, 49)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_qvors"]
-atlas = ExtResource("8_irc8b")
-region = Rect2(168, 49, 42, 49)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_60vn1"]
-atlas = ExtResource("8_irc8b")
-region = Rect2(210, 49, 42, 49)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_st8pv"]
-atlas = ExtResource("8_irc8b")
-region = Rect2(252, 49, 42, 49)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_kohly"]
-atlas = ExtResource("8_irc8b")
-region = Rect2(294, 49, 42, 49)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_bujtj"]
-atlas = ExtResource("8_irc8b")
-region = Rect2(336, 49, 42, 49)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_01r4k"]
-atlas = ExtResource("8_irc8b")
-region = Rect2(378, 49, 42, 49)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_fw2c8"]
-animations = [{
-"frames": [{
-"duration": 5.0,
-"texture": SubResource("AtlasTexture_822sy")
-}, {
-"duration": 5.0,
-"texture": SubResource("AtlasTexture_v42nc")
-}, {
-"duration": 5.0,
-"texture": SubResource("AtlasTexture_qx5hm")
-}, {
-"duration": 5.0,
-"texture": SubResource("AtlasTexture_um3ie")
-}],
-"loop": true,
-"name": &"default",
-"speed": 30.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_s66ab")
-}, {
-"duration": 1.5,
-"texture": SubResource("AtlasTexture_i2ao8")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_6umt6")
-}, {
-"duration": 1.5,
-"texture": SubResource("AtlasTexture_4cawp")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_qvors")
-}, {
-"duration": 1.5,
-"texture": SubResource("AtlasTexture_60vn1")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_st8pv")
-}, {
-"duration": 1.5,
-"texture": SubResource("AtlasTexture_kohly")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_bujtj")
-}, {
-"duration": 1.5,
-"texture": SubResource("AtlasTexture_01r4k")
-}],
-"loop": true,
-"name": &"run",
-"speed": 30.0
-}]
-
 [node name="Node3D" type="Node3D"]
 
+[node name="StaticBody3D3" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -1, 0, 0, 0, -1, -0.509294, 0, -1)
+
+[node name="Cube" type="MeshInstance3D" parent="StaticBody3D3"]
+material_override = SubResource("ShaderMaterial_lf21a")
+mesh = SubResource("BoxMesh_2b2du")
+skeleton = NodePath("../../StaticBody3D3")
+script = ExtResource("4_fsk2n")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D3"]
+shape = SubResource("BoxShape3D_v2cka")
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, -0.509294, 0, 0)
+
+[node name="Cube" type="MeshInstance3D" parent="StaticBody3D2"]
+material_override = SubResource("ShaderMaterial_lf21a")
+mesh = SubResource("BoxMesh_2b2du")
+script = ExtResource("4_fsk2n")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D2"]
+shape = SubResource("BoxShape3D_v2cka")
+
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.707107, -0.707107, 0, 0.707107, 0.707107, 0.502635, 0, 0)
 
 [node name="Cube" type="MeshInstance3D" parent="StaticBody3D"]
 material_override = SubResource("ShaderMaterial_lf21a")
@@ -166,29 +75,20 @@ shape = SubResource("BoxShape3D_v2cka")
 
 [node name="sampleCutPlane" type="MeshInstance3D" parent="." node_paths=PackedStringArray("zAxisHandler")]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -0.999999, 0, 0.999999, -4.37114e-08, 0, 0, -0.0333861)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -0.999999, 0, 0.999999, -4.37114e-08, 0, 0, 0)
 material_override = SubResource("ShaderMaterial_fw2c8")
 mesh = SubResource("PlaneMesh_jbwiv")
 script = ExtResource("6_lj3dt")
 zAxisHandler = NodePath("../Z-Axis")
 
-[node name="CharacterBody3D" type="CharacterBody3D" parent="." node_paths=PackedStringArray("zAxisHandler")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.42761, -0.04)
-script = ExtResource("7_0jtpg")
+[node name="Player" parent="." node_paths=PackedStringArray("zAxisHandler") instance=ExtResource("7_fsk2n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0829, 0)
 zAxisHandler = NodePath("../Z-Axis")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
-transform = Transform3D(1, 0, 0, 0, -0.000226899, -1, 0, 1, -0.000226899, 0, 0, 0)
-shape = SubResource("SeparationRayShape3D_i5e0t")
-
-[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="CharacterBody3D"]
-texture_filter = 0
-sprite_frames = SubResource("SpriteFrames_fw2c8")
-frame_progress = 0.379507
-
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(0.929191, 0.132158, -0.345165, 0, 0.933887, 0.357569, 0.369601, -0.33225, 0.867759, -0.491138, 1.2983, 1.67067)
-size = 1.96208
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00022471, 0.4997, 1.96113)
+projection = 1
+size = 3.65257
 
 [node name="Z-Axis" type="Node" parent="."]
 script = ExtResource("9_2ts83")
