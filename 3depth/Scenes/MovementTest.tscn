@@ -7,12 +7,22 @@
 [ext_resource type="PackedScene" uid="uid://bfpvlpobxol11" path="res://Scenes/Objects/Hazard.tscn" id="5_0jtpg"]
 [ext_resource type="Shader" uid="uid://bjyf4o5jhjee0" path="res://Shaders/CrossSectionEffect/mask.gdshader" id="5_lj3dt"]
 [ext_resource type="Texture2D" uid="uid://blc00itek3tex" path="res://Textures/green.png" id="6_0jtpg"]
-[ext_resource type="Script" uid="uid://8u0vt2ewhfs4" path="res://Scripts/PlaneZAxis.gd" id="6_lj3dt"]
+[ext_resource type="Script" uid="uid://8u0vt2ewhfs4" path="res://Scripts/Z-AxisHandler/PlaneZAxis.gd" id="6_lj3dt"]
 [ext_resource type="PackedScene" uid="uid://cr0xponn76q5v" path="res://Scenes/Objects/Player.tscn" id="7_fsk2n"]
-[ext_resource type="Script" uid="uid://xl6fmx6xqjly" path="res://Scripts/Z-handler.gd" id="9_2ts83"]
+[ext_resource type="Script" uid="uid://xl6fmx6xqjly" path="res://Scripts/Z-AxisHandler/Z-handler.gd" id="9_2ts83"]
 [ext_resource type="PackedScene" uid="uid://ckwch7mgbhffv" path="res://Scenes/Objects/CRTFilter.tscn" id="11_irc8b"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_2b2du"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mjynw"]
+shader = ExtResource("1_irc8b")
+shader_parameter/resolution = Vector2(320, 180)
+shader_parameter/scan_line_amount = 0.5
+shader_parameter/warp_amount = 0.05
+shader_parameter/vignette_amount = 0.5
+shader_parameter/vignette_intensity = 0.3
+shader_parameter/grille_amount = 0.05
+shader_parameter/brightness_boost = 1.2
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gia7o"]
 render_priority = 1
 shader = ExtResource("1_evltv")
 shader_parameter/color = Color(0, 1, 0, 1)
@@ -20,7 +30,7 @@ shader_parameter/fillplane = Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lf21a"]
 render_priority = 0
-next_pass = SubResource("ShaderMaterial_2b2du")
+next_pass = SubResource("ShaderMaterial_gia7o")
 shader = ExtResource("2_vtgv7")
 shader_parameter/fillplane = Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
 shader_parameter/_albedo = ExtResource("3_cbptv")

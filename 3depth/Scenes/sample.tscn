@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bnf205720kfvk"]
+[gd_scene load_steps=27 format=3 uid="uid://bnf205720kfvk"]
 
 [ext_resource type="Shader" uid="uid://v1p8b2wwrsqn" path="res://Shaders/CrossSectionEffect/fillerB.gdshader" id="1_jbwiv"]
 [ext_resource type="Shader" uid="uid://cirr678sbw7ey" path="res://Shaders/CRT/CRT.gdshader" id="1_qx5hm"]
@@ -7,9 +7,13 @@
 [ext_resource type="Script" uid="uid://cp4fghaloyses" path="res://Scripts/CrossSectionEffect/CutFiller.gd" id="3_2b2du"]
 [ext_resource type="Shader" uid="uid://bjyf4o5jhjee0" path="res://Shaders/CrossSectionEffect/mask.gdshader" id="5_i5e0t"]
 [ext_resource type="PackedScene" uid="uid://cr0xponn76q5v" path="res://Scenes/Objects/Player.tscn" id="5_v42nc"]
-[ext_resource type="Script" uid="uid://8u0vt2ewhfs4" path="res://Scripts/PlaneZAxis.gd" id="6_822sy"]
+[ext_resource type="Script" uid="uid://8u0vt2ewhfs4" path="res://Scripts/Z-AxisHandler/PlaneZAxis.gd" id="6_822sy"]
 [ext_resource type="Texture2D" uid="uid://blc00itek3tex" path="res://Textures/green.png" id="6_qx5hm"]
-[ext_resource type="Script" uid="uid://xl6fmx6xqjly" path="res://Scripts/Z-handler.gd" id="9_v42nc"]
+[ext_resource type="Script" uid="uid://xl6fmx6xqjly" path="res://Scripts/Z-AxisHandler/Z-handler.gd" id="9_v42nc"]
+[ext_resource type="PackedScene" uid="uid://colh5r4dmvv4p" path="res://Scenes/Objects/Checkpoint.tscn" id="11_i2ao8"]
+[ext_resource type="PackedScene" uid="uid://bfpvlpobxol11" path="res://Scenes/Objects/Hazard.tscn" id="11_um3ie"]
+[ext_resource type="PackedScene" uid="uid://nwmf10pcv2wv" path="res://Scenes/Objects/z_axis_enabler.tscn" id="12_6umt6"]
+[ext_resource type="Script" uid="uid://ibfxg38rrbu7" path="res://Scripts/CheckpointManager/CheckpointManager.gd" id="12_s66ab"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_i2ao8"]
 shader = ExtResource("1_qx5hm")
@@ -53,6 +57,22 @@ shader_parameter/fillplane = Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0
 shader_parameter/_albedo = ExtResource("2_lf21a")
 shader_parameter/border_color = Color(1, 1, 1, 1)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6umt6"]
+render_priority = 1
+shader = ExtResource("1_jbwiv")
+shader_parameter/color = Color(0, 1, 0, 1)
+shader_parameter/fillplane = Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4cawp"]
+render_priority = 0
+next_pass = SubResource("ShaderMaterial_6umt6")
+shader = ExtResource("1_wg51d")
+shader_parameter/fillplane = Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
+shader_parameter/_albedo = ExtResource("2_lf21a")
+shader_parameter/border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_qvors"]
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fw2c8"]
 render_priority = 0
 shader = ExtResource("5_i5e0t")
@@ -93,7 +113,7 @@ fillplaneVar = NodePath("../../sampleCutPlane")
 shape = SubResource("BoxShape3D_v2cka")
 
 [node name="StaticBody3D2" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0023, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 0.700137, -0.714009, 0, 0.714009, 0.700137, 1.0023, 0, 0)
 
 [node name="Cube" type="MeshInstance3D" parent="StaticBody3D2" node_paths=PackedStringArray("fillplaneVar")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00222719, 0, 0)
@@ -118,22 +138,46 @@ fillplaneVar = NodePath("../../sampleCutPlane")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D3"]
 shape = SubResource("BoxShape3D_v2cka")
 
-[node name="Player" parent="." node_paths=PackedStringArray("zAxisHandler") instance=ExtResource("5_v42nc")]
+[node name="Hazard" parent="." instance=ExtResource("11_um3ie")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.0127, -0.254483, 0)
+
+[node name="Cube" type="MeshInstance3D" parent="Hazard" node_paths=PackedStringArray("fillplaneVar")]
+material_override = SubResource("ShaderMaterial_4cawp")
+mesh = SubResource("BoxMesh_qvors")
+skeleton = NodePath("../../StaticBody3D5")
+script = ExtResource("3_2b2du")
+fillplaneVar = NodePath("../../sampleCutPlane")
+
+[node name="Player" parent="." node_paths=PackedStringArray("zAxisHandler") groups=["Player"] instance=ExtResource("5_v42nc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.741525, 0)
 zAxisHandler = NodePath("../Z-Axis")
 
 [node name="sampleCutPlane" type="MeshInstance3D" parent="." node_paths=PackedStringArray("zAxisHandler")]
 unique_name_in_owner = true
-transform = Transform3D(1.92974, 0, 0, 0, -4.37114e-08, -1.66536, 0, 0.999999, -7.27951e-08, 0, -0.0858736, 0.0145458)
+transform = Transform3D(2.10464, 0, 0, 0, -4.37114e-08, -1.26713, 0, 0.999999, -5.53879e-08, 0.500427, 0.418905, 0.0145458)
 material_override = SubResource("ShaderMaterial_fw2c8")
 mesh = SubResource("PlaneMesh_jbwiv")
 script = ExtResource("6_822sy")
 zAxisHandler = NodePath("../Z-Axis")
+
+[node name="Checkpoint" parent="." node_paths=PackedStringArray("checkpoint_manager") instance=ExtResource("11_i2ao8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.967184, 0.96342, 0)
+checkpoint_manager = NodePath("../CheckpointManager")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.49243, 0.445801, 1.9047)
 projection = 1
 size = 1.96208
 
+[node name="Z-AxisEnabler" parent="." instance=ExtResource("12_6umt6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.328686, 0.692036, 0)
+
 [node name="Z-Axis" type="Node" parent="."]
 script = ExtResource("9_v42nc")
+
+[node name="CheckpointManager" type="Node" parent="."]
+script = ExtResource("12_s66ab")
+initial_location = Vector3(0, 0.742, 0)
+
+[connection signal="onDeath" from="Player" to="CheckpointManager" method="_on_player_on_death"]
+[connection signal="body_entered" from="Z-AxisEnabler" to="Z-AxisEnabler" method="_on_body_entered"]

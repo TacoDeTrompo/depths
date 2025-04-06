@@ -12,6 +12,8 @@ var state_machine: StateMachine = $StateMachine
 
 @export var zAxisHandler: ZAxisHandler
 
+signal onDeath(player: Player, zAxisHandler: ZAxisHandler)
+
 func _ready() -> void:
 	# Initialize the state machine, passing a reference of the player to the states,
 	# that way they can move and react accordingly
@@ -36,6 +38,7 @@ func _process(delta: float) -> void:
 	# TODO: Dies
 	if(health<=0):
 		health = 0;
+		onDeath.emit(self, zAxisHandler)
 	state_machine.process_frame(delta)
 
 func take_damage(dmg: int):
