@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://bxh8g0hpajvvu" path="res://Textures/platforms_top.png" id="2_lf21a"]
 [ext_resource type="Script" uid="uid://cp4fghaloyses" path="res://Scripts/CrossSectionEffect/CutFiller.gd" id="3_2b2du"]
 [ext_resource type="Shader" uid="uid://bjyf4o5jhjee0" path="res://Shaders/CrossSectionEffect/mask.gdshader" id="5_i5e0t"]
-[ext_resource type="PackedScene" uid="uid://cr0xponn76q5v" path="res://Scripts/Player/Player.tscn" id="5_v42nc"]
+[ext_resource type="PackedScene" uid="uid://cr0xponn76q5v" path="res://Scenes/Objects/Player.tscn" id="5_v42nc"]
 [ext_resource type="Script" uid="uid://8u0vt2ewhfs4" path="res://Scripts/PlaneZAxis.gd" id="6_822sy"]
 [ext_resource type="Texture2D" uid="uid://blc00itek3tex" path="res://Textures/green.png" id="6_qx5hm"]
 [ext_resource type="Script" uid="uid://xl6fmx6xqjly" path="res://Scripts/Z-handler.gd" id="9_v42nc"]

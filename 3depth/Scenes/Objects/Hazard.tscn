@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://bfpvlpobxol11"]
+
+[ext_resource type="Script" uid="uid://co21n6d1p60w8" path="res://Scripts/Hazard.gd" id="1_pn62k"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_v2cka"]
+
+[node name="Hazard" type="Area3D"]
+script = ExtResource("1_pn62k")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_v2cka")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

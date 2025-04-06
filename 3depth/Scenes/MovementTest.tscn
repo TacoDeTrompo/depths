@@ -1,13 +1,14 @@
-[gd_scene load_steps=18 format=3 uid="uid://f66crnu0vaca"]
+[gd_scene load_steps=19 format=3 uid="uid://f66crnu0vaca"]
 
 [ext_resource type="Shader" uid="uid://v1p8b2wwrsqn" path="res://Shaders/CrossSectionEffect/fillerB.gdshader" id="1_evltv"]
 [ext_resource type="Shader" uid="uid://tvkec53jbjgt" path="res://Shaders/CrossSectionEffect/filler.gdshader" id="2_vtgv7"]
 [ext_resource type="Texture2D" uid="uid://bxh8g0hpajvvu" path="res://Textures/platforms_top.png" id="3_cbptv"]
 [ext_resource type="Script" uid="uid://cp4fghaloyses" path="res://Scripts/CrossSectionEffect/CutFiller.gd" id="4_fsk2n"]
+[ext_resource type="PackedScene" uid="uid://bfpvlpobxol11" path="res://Scenes/Objects/Hazard.tscn" id="5_0jtpg"]
 [ext_resource type="Shader" uid="uid://bjyf4o5jhjee0" path="res://Shaders/CrossSectionEffect/mask.gdshader" id="5_lj3dt"]
 [ext_resource type="Texture2D" uid="uid://blc00itek3tex" path="res://Textures/green.png" id="6_0jtpg"]
 [ext_resource type="Script" uid="uid://8u0vt2ewhfs4" path="res://Scripts/PlaneZAxis.gd" id="6_lj3dt"]
-[ext_resource type="PackedScene" uid="uid://cr0xponn76q5v" path="res://Scripts/Player/Player.tscn" id="7_fsk2n"]
+[ext_resource type="PackedScene" uid="uid://cr0xponn76q5v" path="res://Scenes/Objects/Player.tscn" id="7_fsk2n"]
 [ext_resource type="Script" uid="uid://xl6fmx6xqjly" path="res://Scripts/Z-handler.gd" id="9_2ts83"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2b2du"]
@@ -81,6 +82,16 @@ fillplaneVar = NodePath("../../sampleCutPlane")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D6"]
 shape = SubResource("BoxShape3D_v2cka")
+
+[node name="Hazard" parent="." instance=ExtResource("5_0jtpg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 1, 0)
+
+[node name="Cube" type="MeshInstance3D" parent="Hazard" node_paths=PackedStringArray("fillplaneVar")]
+material_override = SubResource("ShaderMaterial_lf21a")
+mesh = SubResource("BoxMesh_2b2du")
+skeleton = NodePath("../../StaticBody3D5")
+script = ExtResource("4_fsk2n")
+fillplaneVar = NodePath("../../sampleCutPlane")
 
 [node name="StaticBody3D5" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 1, 0)
