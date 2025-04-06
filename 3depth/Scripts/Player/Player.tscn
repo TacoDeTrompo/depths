@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://cr0xponn76q5v"]
+[gd_scene load_steps=26 format=3 uid="uid://cr0xponn76q5v"]
 
 [ext_resource type="Script" uid="uid://cp0aq32jtaidl" path="res://Scripts/Player/Player.gd" id="1_7cvjj"]
 [ext_resource type="Texture2D" uid="uid://bif43by4tbd76" path="res://Textures/samus sprite.png" id="2_g7na3"]
@@ -125,13 +125,17 @@ length = 0.234551
 [sub_resource type="BoxShape3D" id="BoxShape3D_v42nc"]
 size = Vector3(0.121613, 0.336304, 0.00732422)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_gfoho"]
+size = Vector3(0.121368, 0.428162, 0.00723267)
+
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_7cvjj")
 
 [node name="Animations" type="AnimatedSprite3D" parent="."]
 texture_filter = 0
 sprite_frames = SubResource("SpriteFrames_fw2c8")
-frame_progress = 0.299662
+frame = 1
+frame_progress = 0.90011
 
 [node name="SeparationRayFloor" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -0.000226899, -1, 0, 1, -0.000226899, 0, 0, 0)
@@ -140,6 +144,13 @@ shape = SubResource("SeparationRayShape3D_i5e0t")
 [node name="BodyCollision" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0232391, 0.0285034, 0)
 shape = SubResource("BoxShape3D_v42nc")
+
+[node name="DamageCollision" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DamageCollision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0234528, -0.0188293, 0.000137329)
+shape = SubResource("BoxShape3D_gfoho")
+debug_color = Color(0.984516, 0, 0.342813, 0.42)
 
 [node name="StateMachine" parent="." node_paths=PackedStringArray("starting_state") instance=ExtResource("3_g7na3")]
 starting_state = NodePath("idle")
