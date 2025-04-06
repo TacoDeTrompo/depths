@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://colh5r4dmvv4p"]
+
+[ext_resource type="Script" uid="uid://c16w3cb5cxvda" path="res://Scripts/CheckpointManager/Checkpoint.gd" id="1_awlgn"]
+[ext_resource type="Texture2D" uid="uid://cmq4352odlv31" path="res://Textures/rock_side.png" id="2_7vnxx"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_um3ie"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4cawp"]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0.701961)
+albedo_texture = ExtResource("2_7vnxx")
+emission_enabled = true
+emission = Color(0, 0.52549, 0, 1)
+emission_energy_multiplier = 13.82
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_qvors"]
+material = SubResource("StandardMaterial3D_4cawp")
+
+[node name="Checkpoint" type="Area3D"]
+script = ExtResource("1_awlgn")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+shape = SubResource("CylinderShape3D_um3ie")
+
+[node name="CheckpointMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.9, 0, 0, 0, -4.37114e-08, -0.9, 0, 1, -3.93403e-08, 0, 0, 0)
+mesh = SubResource("CylinderMesh_qvors")
+
+[node name="RespawnPoint" type="Marker3D" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
