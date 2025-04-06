@@ -8,9 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://bfpvlpobxol11" path="res://Scenes/Objects/Hazard.tscn" id="5_0jtpg"]
 [ext_resource type="Shader" uid="uid://bjyf4o5jhjee0" path="res://Shaders/CrossSectionEffect/mask.gdshader" id="5_lj3dt"]
 [ext_resource type="Texture2D" uid="uid://blc00itek3tex" path="res://Textures/green.png" id="6_0jtpg"]
-[ext_resource type="Script" uid="uid://8u0vt2ewhfs4" path="res://Scripts/PlaneZAxis.gd" id="6_lj3dt"]
+[ext_resource type="Script" uid="uid://8u0vt2ewhfs4" path="res://Scripts/Z-AxisHandler/PlaneZAxis.gd" id="6_lj3dt"]
 [ext_resource type="PackedScene" uid="uid://cr0xponn76q5v" path="res://Scenes/Objects/Player.tscn" id="7_fsk2n"]
-[ext_resource type="Script" uid="uid://xl6fmx6xqjly" path="res://Scripts/Z-handler.gd" id="9_2ts83"]
+[ext_resource type="Script" uid="uid://xl6fmx6xqjly" path="res://Scripts/Z-AxisHandler/Z-handler.gd" id="9_2ts83"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_mjynw"]
 shader = ExtResource("1_irc8b")
