@@ -27,8 +27,10 @@ func _physics_process(delta: float) -> void:
 	var currentPosition = self.global_position
 	currentPosition.z = zAxisHandler.zAxis
 	self.global_position = currentPosition
+	
 	# Now send it to the state
 	state_machine.process_physics(delta)
+	zAxisHandler.zAxis = self.global_position.z
 
 func _process(delta: float) -> void:
 	# TODO: Dies

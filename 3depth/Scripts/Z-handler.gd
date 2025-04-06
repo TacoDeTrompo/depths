@@ -11,7 +11,7 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if Input.is_action_pressed("z_backward"):
-		zAxis -= zSpeed * delta
-	elif Input.is_action_pressed("z_forward"):
 		zAxis += zSpeed * delta
+	elif Input.is_action_pressed("z_forward"):
+		zAxis -= zSpeed * delta
 	
