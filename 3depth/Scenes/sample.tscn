@@ -190,6 +190,7 @@ shape = SubResource("BoxShape3D_v2cka")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0023, 0, 0)
 
 [node name="Cube" type="MeshInstance3D" parent="StaticBody3D/StaticBody3D" node_paths=PackedStringArray("fillplaneVar")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00222719, 0, 0)
 material_override = SubResource("ShaderMaterial_s66ab")
 mesh = SubResource("BoxMesh_2b2du")
 skeleton = NodePath("../..")
