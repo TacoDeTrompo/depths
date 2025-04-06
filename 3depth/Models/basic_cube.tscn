@@ -1,0 +1,25 @@
+[gd_scene load_steps=7 format=3 uid="uid://dywxkvg2cqccr"]
+
+[ext_resource type="PackedScene" uid="uid://cxayhmwsrnrp4" path="res://Models/Basic cube.fbx" id="1_umcto"]
+[ext_resource type="Shader" uid="uid://v1p8b2wwrsqn" path="res://Shaders/CrossSectionEffect/fillerB.gdshader" id="2_gm7dl"]
+[ext_resource type="Shader" uid="uid://tvkec53jbjgt" path="res://Shaders/CrossSectionEffect/filler.gdshader" id="3_obvau"]
+[ext_resource type="Texture2D" uid="uid://bxh8g0hpajvvu" path="res://Textures/platforms_top.png" id="4_mbtrk"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cy7d3"]
+render_priority = 1
+shader = ExtResource("2_gm7dl")
+shader_parameter/color = Color(0, 1, 0, 1)
+shader_parameter/fillplane = Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dhx0e"]
+render_priority = 0
+next_pass = SubResource("ShaderMaterial_cy7d3")
+shader = ExtResource("3_obvau")
+shader_parameter/fillplane = Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
+shader_parameter/_albedo = ExtResource("4_mbtrk")
+shader_parameter/border_color = Color(0, 0, 0, 1)
+
+[node name="Basic cube" instance=ExtResource("1_umcto")]
+
+[node name="Cube" parent="." index="0"]
+material_override = SubResource("ShaderMaterial_dhx0e")
