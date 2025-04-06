@@ -1,6 +1,7 @@
-[gd_scene load_steps=18 format=3 uid="uid://bnf205720kfvk"]
+[gd_scene load_steps=20 format=3 uid="uid://bnf205720kfvk"]
 
 [ext_resource type="Shader" uid="uid://v1p8b2wwrsqn" path="res://Shaders/CrossSectionEffect/fillerB.gdshader" id="1_jbwiv"]
+[ext_resource type="Shader" uid="uid://cirr678sbw7ey" path="res://Shaders/CRT/CRT.gdshader" id="1_qx5hm"]
 [ext_resource type="Shader" uid="uid://tvkec53jbjgt" path="res://Shaders/CrossSectionEffect/filler.gdshader" id="1_wg51d"]
 [ext_resource type="Texture2D" uid="uid://bxh8g0hpajvvu" path="res://Textures/platforms_top.png" id="2_lf21a"]
 [ext_resource type="Script" uid="uid://cp4fghaloyses" path="res://Scripts/CrossSectionEffect/CutFiller.gd" id="3_2b2du"]
@@ -9,6 +10,16 @@
 [ext_resource type="Script" uid="uid://8u0vt2ewhfs4" path="res://Scripts/PlaneZAxis.gd" id="6_822sy"]
 [ext_resource type="Texture2D" uid="uid://blc00itek3tex" path="res://Textures/green.png" id="6_qx5hm"]
 [ext_resource type="Script" uid="uid://xl6fmx6xqjly" path="res://Scripts/Z-handler.gd" id="9_v42nc"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_i2ao8"]
+shader = ExtResource("1_qx5hm")
+shader_parameter/resolution = Vector2(320, 180)
+shader_parameter/scan_line_amount = 0.5
+shader_parameter/warp_amount = 0.05
+shader_parameter/vignette_amount = 0.5
+shader_parameter/vignette_intensity = 0.3
+shader_parameter/grille_amount = 0.05
+shader_parameter/brightness_boost = 1.2
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2b2du"]
 render_priority = 1
@@ -56,6 +67,19 @@ shader_parameter/use_texture = true
 
 [node name="Node3D" type="Node3D"]
 
+[node name="CRT Filter" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CRT Filter"]
+material = SubResource("ShaderMaterial_i2ao8")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+metadata/_edit_use_anchors_ = true
+
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 
 [node name="Cube" type="MeshInstance3D" parent="StaticBody3D" node_paths=PackedStringArray("fillplaneVar")]
@@ -68,18 +92,30 @@ fillplaneVar = NodePath("../../sampleCutPlane")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
 shape = SubResource("BoxShape3D_v2cka")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="StaticBody3D"]
+[node name="StaticBody3D2" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0023, 0, 0)
 
-[node name="Cube" type="MeshInstance3D" parent="StaticBody3D/StaticBody3D" node_paths=PackedStringArray("fillplaneVar")]
+[node name="Cube" type="MeshInstance3D" parent="StaticBody3D2" node_paths=PackedStringArray("fillplaneVar")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00222719, 0, 0)
 material_override = SubResource("ShaderMaterial_s66ab")
 mesh = SubResource("BoxMesh_2b2du")
+script = ExtResource("3_2b2du")
+fillplaneVar = NodePath("../../sampleCutPlane")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D2"]
+shape = SubResource("BoxShape3D_v2cka")
+
+[node name="StaticBody3D3" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.00604, -0.709727)
+
+[node name="Cube" type="MeshInstance3D" parent="StaticBody3D3" node_paths=PackedStringArray("fillplaneVar")]
+material_override = SubResource("ShaderMaterial_lf21a")
+mesh = SubResource("BoxMesh_2b2du")
 skeleton = NodePath("../..")
 script = ExtResource("3_2b2du")
-fillplaneVar = NodePath("../../../sampleCutPlane")
+fillplaneVar = NodePath("../../sampleCutPlane")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D3"]
 shape = SubResource("BoxShape3D_v2cka")
 
 [node name="Player" parent="." node_paths=PackedStringArray("zAxisHandler") instance=ExtResource("5_v42nc")]
@@ -88,14 +124,14 @@ zAxisHandler = NodePath("../Z-Axis")
 
 [node name="sampleCutPlane" type="MeshInstance3D" parent="." node_paths=PackedStringArray("zAxisHandler")]
 unique_name_in_owner = true
-transform = Transform3D(1.92974, 0, 0, 0, -4.37114e-08, -0.999999, 0, 0.999999, -4.37114e-08, 0, -0.0858736, 0.0145458)
+transform = Transform3D(1.92974, 0, 0, 0, -4.37114e-08, -1.66536, 0, 0.999999, -7.27951e-08, 0, -0.0858736, 0.0145458)
 material_override = SubResource("ShaderMaterial_fw2c8")
 mesh = SubResource("PlaneMesh_jbwiv")
 script = ExtResource("6_822sy")
 zAxisHandler = NodePath("../Z-Axis")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.158183, 1.671)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.49243, 0.445801, 1.9047)
 projection = 1
 size = 1.96208
 

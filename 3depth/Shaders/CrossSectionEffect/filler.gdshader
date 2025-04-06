@@ -15,7 +15,7 @@ void fragment() {
 	float dist =  fillDistance(-fillplane[1].xyz,fillplane[3].xyz,wvtx);
 
 	if (dist < 0.0) discard;
-	float border_dist = smoothstep(0.0, 0.02, dist);
+	float border_dist = smoothstep(0.0, 0.0002, dist);
 	vec3 alb_color = texture(_albedo,UV).rgb;
 	ALBEDO = (mix(border_color, texture(_albedo,UV).rgb, border_dist)).rgb;
 	EMISSION = (mix(border_color * 7.0,vec3(0.0),border_dist)).rgb;
