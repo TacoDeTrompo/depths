@@ -6,10 +6,14 @@ var fallState: State
 var jumpState: State
 @export
 var idleState: State
+@export
+var aimState: State
 
 func process_input(event: InputEvent) -> State:
 	if Input.is_action_just_pressed('jump') and parent.is_on_floor():
 		return jumpState
+	if Input.is_action_just_pressed("aim"):
+		return aimState
 	return null
 
 func process_physics(delta: float) -> State:

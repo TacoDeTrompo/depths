@@ -1,6 +1,6 @@
 extends Node3D
 
-@export var state_machine: PlayerStateMachine
+@export var state_machine: StateMachine
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

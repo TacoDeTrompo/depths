@@ -1,12 +1,17 @@
-[gd_scene load_steps=26 format=3 uid="uid://cr0xponn76q5v"]
+[gd_scene load_steps=31 format=3 uid="uid://cr0xponn76q5v"]
 
 [ext_resource type="Script" uid="uid://cp0aq32jtaidl" path="res://Scripts/Player/Player.gd" id="1_7cvjj"]
 [ext_resource type="Texture2D" uid="uid://bif43by4tbd76" path="res://Textures/samus sprite.png" id="2_g7na3"]
+[ext_resource type="PackedScene" uid="uid://bwa6r4hdybshj" path="res://Scenes/Objects/Hook.tscn" id="2_kgsvj"]
 [ext_resource type="PackedScene" uid="uid://issb8on3ob8n" path="res://Scripts/StateMachine/StateMachine.tscn" id="3_g7na3"]
 [ext_resource type="Script" uid="uid://bapq3lfw435lx" path="res://Scripts/Player/States/idle.gd" id="4_gfoho"]
 [ext_resource type="Script" uid="uid://bmukiiuv168xf" path="res://Scripts/Player/States/move.gd" id="5_7v0xc"]
 [ext_resource type="Script" uid="uid://dbax1hlv5jyad" path="res://Scripts/Player/States/jump.gd" id="6_7ga6f"]
 [ext_resource type="Script" uid="uid://cw74piru4h11q" path="res://Scripts/Player/States/fall.gd" id="7_qn6yv"]
+[ext_resource type="Script" uid="uid://1ctdwptkt2d0" path="res://Scripts/Player/States/aim.gd" id="8_w3k6v"]
+[ext_resource type="Script" uid="uid://cowtdpr3npiyc" path="res://Scripts/Player/States/shoot.gd" id="10_ff814"]
+[ext_resource type="Script" uid="uid://dn4qptf1d16x" path="res://Scripts/Player/States/hook.gd" id="11_n7c1o"]
+[ext_resource type="Script" uid="uid://eyw56jlevn74" path="res://Scripts/Player/States/detach.gd" id="12_12acn"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_822sy"]
 atlas = ExtResource("2_g7na3")
@@ -131,6 +136,9 @@ size = Vector3(0.121368, 0.428162, 0.00723267)
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_7cvjj")
 
+[node name="Hook" parent="." instance=ExtResource("2_kgsvj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.119278, 0.0289211, 0)
+
 [node name="Animations" type="AnimatedSprite3D" parent="."]
 texture_filter = 0
 sprite_frames = SubResource("SpriteFrames_fw2c8")
@@ -155,17 +163,19 @@ debug_color = Color(0.984516, 0, 0.342813, 0.42)
 [node name="StateMachine" parent="." node_paths=PackedStringArray("starting_state") instance=ExtResource("3_g7na3")]
 starting_state = NodePath("idle")
 
-[node name="idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("fallState", "jumpState", "moveState")]
+[node name="idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("fallState", "jumpState", "moveState", "aimState")]
 script = ExtResource("4_gfoho")
 fallState = NodePath("../fall")
 jumpState = NodePath("../jump")
 moveState = NodePath("../move")
+aimState = NodePath("../aim")
 
-[node name="move" type="Node" parent="StateMachine" node_paths=PackedStringArray("fallState", "jumpState", "idleState")]
+[node name="move" type="Node" parent="StateMachine" node_paths=PackedStringArray("fallState", "jumpState", "idleState", "aimState")]
 script = ExtResource("5_7v0xc")
 fallState = NodePath("../fall")
 jumpState = NodePath("../jump")
 idleState = NodePath("../idle")
+aimState = NodePath("../aim")
 
 [node name="jump" type="Node" parent="StateMachine" node_paths=PackedStringArray("fallState", "idleState", "moveState")]
 script = ExtResource("6_7ga6f")
@@ -177,3 +187,24 @@ moveState = NodePath("../move")
 script = ExtResource("7_qn6yv")
 idleState = NodePath("../idle")
 moveState = NodePath("../move")
+
+[node name="aim" type="Node" parent="StateMachine" node_paths=PackedStringArray("idleState", "hookRoot", "player")]
+script = ExtResource("8_w3k6v")
+idleState = NodePath("../idle")
+hookRoot = NodePath("../../Hook")
+player = NodePath("../..")
+
+[node name="shoot" type="Node" parent="StateMachine" node_paths=PackedStringArray("idleState", "hookRoot")]
+script = ExtResource("10_ff814")
+idleState = NodePath("../idle")
+hookRoot = NodePath("../../Hook")
+
+[node name="hook" type="Node" parent="StateMachine" node_paths=PackedStringArray("detachState", "hookRoot")]
+script = ExtResource("11_n7c1o")
+detachState = NodePath("../detach")
+hookRoot = NodePath("../../Hook")
+
+[node name="detach" type="Node" parent="StateMachine" node_paths=PackedStringArray("fallState", "hookRoot")]
+script = ExtResource("12_12acn")
+fallState = NodePath("../fall")
+hookRoot = NodePath("../../Hook")

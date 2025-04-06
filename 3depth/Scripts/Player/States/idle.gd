@@ -6,14 +6,20 @@ var fallState: State
 var jumpState: State
 @export
 var moveState: State
+@export
+var aimState: State
 
 func enter() -> void:
 	super()
 	parent.velocity.x = 0
 
 func process_input(event: InputEvent) -> State:
-	if Input.is_action_just_pressed('jump') and parent.is_on_floor():
+	if Input.is_action_just_pressed("jump") and parent.is_on_floor():
 		return jumpState
+		
+	if Input.is_action_just_pressed("aim"):
+		return aimState
+		
 	if Input.get_axis("move_left","move_right") != 0:
 		return moveState
 	return null

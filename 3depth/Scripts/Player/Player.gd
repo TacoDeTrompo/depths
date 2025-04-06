@@ -4,7 +4,7 @@ extends CharacterBody3D
 @onready
 var animations = $Animations
 @onready
-var state_machine = $StateMachine
+var state_machine: StateMachine = $StateMachine
 
 @export var move_speed = 1.0
 @export var jump_velocity = 3.5

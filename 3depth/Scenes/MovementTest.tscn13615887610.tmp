@@ -162,8 +162,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00022471, 0.4997, 1.96113)
 projection = 1
 size = 3.65257
 
-[node name="Z-Axis" type="Node" parent="." node_paths=PackedStringArray("player")]
+[node name="Z-Axis" type="Node" parent="."]
 script = ExtResource("9_2ts83")
-player = NodePath("../Player")
 
 [node name="CRT Filter" parent="." instance=ExtResource("11_irc8b")]

@@ -32,7 +32,7 @@ func process_physics(delta: float) -> State:
 
 func exit():
 	# Check if player should take fall damage (currently lethal)
-	# As long as the player has been 0.61 seconds on air (almost enough to cross 2 blocks vertically)
+	# As long as the player has been 0.71 seconds on air (equal to 2.5 blocks vertically, enough space and a little extra to make 2 block falls)
 	# and hit the ground, take damage
-	if(hitGround and lastKnowVerticalSpeed <= parent.get_gravity().y*0.61):
+	if(hitGround and lastKnowVerticalSpeed <= parent.get_gravity().y*0.71):
 		parent.take_damage(1)

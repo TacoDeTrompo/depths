@@ -1,4 +1,4 @@
-class_name PlayerStateMachine
+class_name StateMachine
 extends Node
 
 @export
