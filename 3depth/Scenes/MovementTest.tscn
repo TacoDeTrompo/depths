@@ -22,7 +22,7 @@ shader_parameter/vignette_intensity = 0.3
 shader_parameter/grille_amount = 0.05
 shader_parameter/brightness_boost = 1.2
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_2b2du"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gia7o"]
 render_priority = 1
 shader = ExtResource("1_evltv")
 shader_parameter/color = Color(0, 1, 0, 1)
@@ -30,7 +30,7 @@ shader_parameter/fillplane = Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lf21a"]
 render_priority = 0
-next_pass = SubResource("ShaderMaterial_2b2du")
+next_pass = SubResource("ShaderMaterial_gia7o")
 shader = ExtResource("2_vtgv7")
 shader_parameter/fillplane = Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
 shader_parameter/_albedo = ExtResource("3_cbptv")
