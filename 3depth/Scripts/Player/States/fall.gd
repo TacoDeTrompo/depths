@@ -5,7 +5,15 @@ var idleState: State
 @export
 var moveState: State
 
+var lastKnowVerticalSpeed = 0
+var hitGround = false
+
+func enter():
+	hitGround = false
+	lastKnowVerticalSpeed = 0
+
 func process_physics(delta: float) -> State:
+	lastKnowVerticalSpeed = parent.velocity.y
 	parent.velocity.y += parent.get_gravity().y * delta
 
 	var movement = Input.get_axis('move_left', 'move_right') * parent.move_speed
@@ -16,7 +24,15 @@ func process_physics(delta: float) -> State:
 	parent.move_and_slide()
 	
 	if parent.is_on_floor():
+		hitGround = true
 		if movement != 0:
 			return moveState
 		return idleState
 	return null
+
+func exit():
+	# Check if player should take fall damage (currently lethal)
+	# As long as the player has been 0.61 seconds on air (almost enough to cross 2 blocks vertically)
+	# and hit the ground, take damage
+	if(hitGround and lastKnowVerticalSpeed <= parent.get_gravity().y*0.61):
+		parent.take_damage(1)

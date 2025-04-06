@@ -69,6 +69,45 @@ fillplaneVar = NodePath("../../sampleCutPlane")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D3"]
 shape = SubResource("BoxShape3D_v2cka")
 
+[node name="StaticBody3D6" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 2, 0)
+
+[node name="Cube" type="MeshInstance3D" parent="StaticBody3D6" node_paths=PackedStringArray("fillplaneVar")]
+material_override = SubResource("ShaderMaterial_lf21a")
+mesh = SubResource("BoxMesh_2b2du")
+skeleton = NodePath("../../StaticBody3D6")
+script = ExtResource("4_fsk2n")
+fillplaneVar = NodePath("../../sampleCutPlane")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D6"]
+shape = SubResource("BoxShape3D_v2cka")
+
+[node name="StaticBody3D5" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 1, 0)
+
+[node name="Cube" type="MeshInstance3D" parent="StaticBody3D5" node_paths=PackedStringArray("fillplaneVar")]
+material_override = SubResource("ShaderMaterial_lf21a")
+mesh = SubResource("BoxMesh_2b2du")
+skeleton = NodePath("../../StaticBody3D5")
+script = ExtResource("4_fsk2n")
+fillplaneVar = NodePath("../../sampleCutPlane")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D5"]
+shape = SubResource("BoxShape3D_v2cka")
+
+[node name="StaticBody3D4" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -1, 0, 0, 0, -1, -1.5, 0, 0)
+
+[node name="Cube" type="MeshInstance3D" parent="StaticBody3D4" node_paths=PackedStringArray("fillplaneVar")]
+material_override = SubResource("ShaderMaterial_lf21a")
+mesh = SubResource("BoxMesh_2b2du")
+skeleton = NodePath("../../StaticBody3D4")
+script = ExtResource("4_fsk2n")
+fillplaneVar = NodePath("../../sampleCutPlane")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D4"]
+shape = SubResource("BoxShape3D_v2cka")
+
 [node name="StaticBody3D2" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, -0.509294, 0, 0)
 
@@ -103,7 +142,7 @@ script = ExtResource("6_lj3dt")
 zAxisHandler = NodePath("../Z-Axis")
 
 [node name="Player" parent="." node_paths=PackedStringArray("zAxisHandler") instance=ExtResource("7_fsk2n")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0829, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.18782, 2.84653, 0)
 zAxisHandler = NodePath("../Z-Axis")
 
 [node name="Camera3D" type="Camera3D" parent="."]

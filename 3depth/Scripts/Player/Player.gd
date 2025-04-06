@@ -1,3 +1,4 @@
+class_name Player
 extends CharacterBody3D
 
 @onready
@@ -7,6 +8,7 @@ var state_machine = $StateMachine
 
 @export var move_speed = 1.0
 @export var jump_velocity = 3.5
+@export var health = 1
 
 @export var zAxisHandler: ZAxisHandler
 
@@ -29,4 +31,10 @@ func _physics_process(delta: float) -> void:
 	state_machine.process_physics(delta)
 
 func _process(delta: float) -> void:
+	# TODO: Dies
+	if(health<=0):
+		health = 0;
 	state_machine.process_frame(delta)
+
+func take_damage(dmg: int):
+	health -= dmg
