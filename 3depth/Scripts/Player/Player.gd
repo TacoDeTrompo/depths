@@ -33,6 +33,7 @@ func _physics_process(delta: float) -> void:
 	# Now send it to the state
 	state_machine.process_physics(delta)
 	zAxisHandler.zAxis = self.global_position.z
+	velocity.z = 0.0
 
 func _process(delta: float) -> void:
 	# TODO: Dies
