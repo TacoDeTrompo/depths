@@ -1,3 +1,4 @@
+class_name PlayerStateMachine
 extends Node
 
 @export

@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://bwa6r4hdybshj"]
+
+[ext_resource type="Texture2D" uid="uid://b8c2evdu2iduq" path="res://Textures/links.png" id="1_ram37"]
+[ext_resource type="Script" uid="uid://rhvy57wgfbg2" path="res://Scripts/Hook/links.gd" id="2_i6il5"]
+[ext_resource type="Texture2D" uid="uid://c4jqcyc6jqokc" path="res://Textures/tip.png" id="2_sb1fp"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wv5t3"]
+size = Vector3(0.0804443, 0.0439453, 0.00561523)
+
+[node name="Hook" type="Node3D"]
+
+[node name="Links" type="Sprite3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -0.079, 0, 0)
+billboard = 1
+texture_filter = 0
+texture = ExtResource("1_ram37")
+region_enabled = true
+region_rect = Rect2(0, 0, 8, 8)
+script = ExtResource("2_i6il5")
+
+[node name="Tip" type="CharacterBody3D" parent="."]
+
+[node name="Tip" type="Sprite3D" parent="Tip"]
+billboard = 1
+texture_filter = 0
+texture = ExtResource("2_sb1fp")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Tip"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.10352e-05, -0.000488281, 0.000366211)
+shape = SubResource("BoxShape3D_wv5t3")
