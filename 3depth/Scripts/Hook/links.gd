@@ -14,7 +14,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	region_rect = Rect2(0, 0, 8, 8 * extended)
+	region_rect = Rect2(0, 0, 16 * extended, 16)
 	var currentPos = position
 	currentPos.x = linkInitialOffset - (linkOffset * (extended - 1))
 	position = currentPos
