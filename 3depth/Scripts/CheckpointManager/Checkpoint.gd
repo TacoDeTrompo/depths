@@ -3,6 +3,7 @@ extends Area3D
 
 @export var overrideRespawnPointZAxis: bool = true
 @export var checkpoint_manager: CheckpointManager
+@export var fillplaneVar:MeshInstance3D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
