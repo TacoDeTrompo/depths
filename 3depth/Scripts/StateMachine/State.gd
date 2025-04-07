@@ -11,8 +11,8 @@ var animation_name: String
 var parent
 
 func enter() -> void:
-	# TODO: implement animations
-	#parent.animations.play(animation_name)
+	if(animation_name!=""):
+		parent.animations.play(animation_name)
 	pass
 
 func exit() -> void:

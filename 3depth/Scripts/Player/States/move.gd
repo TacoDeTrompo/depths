@@ -11,8 +11,6 @@ var aimState: State
 
 func enter() -> void:
 	super()
-	parent.animations.set_animation("run")
-	parent.animations.play()
 	
 
 func process_input(event: InputEvent) -> State:

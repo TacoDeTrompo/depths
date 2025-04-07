@@ -2,6 +2,8 @@ extends State
 
 @export
 var fallState: State
+@export
+var idleState: State
 
 @export
 var hookHandler: HookHandler
@@ -14,4 +16,7 @@ func enter():
 	pass
 	
 func process_frame(delta: float) -> State:
+	if(parent.is_on_floor()):
+		return idleState
+	
 	return fallState

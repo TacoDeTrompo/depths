@@ -13,7 +13,6 @@ script = ExtResource("1_kicof")
 PosHandler = NodePath("PosHandler")
 links = NodePath("PosHandler/Anchor/Links")
 tip = NodePath("PosHandler/Anchor/Tip")
-shootSpeed = 2
 
 [node name="PosHandler" type="Node3D" parent="."]
 

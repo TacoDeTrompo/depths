@@ -7,7 +7,7 @@ extends Node3D
 @export var tip:Area3D
 
 @export var linksMaxLenght = 5
-@export var shootSpeed = 3
+@export var shootSpeed = 4
 var currentLenght = 0
 var tipLocked = false
 var didHitTarget = false

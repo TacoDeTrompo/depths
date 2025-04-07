@@ -12,7 +12,6 @@ func enter():
 	super()
 	hitGround = false
 	lastKnowVerticalSpeed = 0
-	parent.animations.set_animation("fall")
 
 func process_physics(delta: float) -> State:
 	lastKnowVerticalSpeed = parent.velocity.y
@@ -21,7 +20,7 @@ func process_physics(delta: float) -> State:
 	var movement = Input.get_axis('move_left', 'move_right') * parent.move_speed
 	
 	if movement != 0:
-		parent.animations.flip_h = movement < 0
+		parent.animations.flip_h = movement > 0
 	parent.velocity.x = movement
 	parent.move_and_slide()
 	

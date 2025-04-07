@@ -5,7 +5,7 @@ extends CharacterBody3D
 var animations = $Animations
 @onready
 var state_machine: StateMachine = $StateMachine
-@onready var HookPos: Array[Node3D] = [$HookPos1, $HookPos2]
+@onready var HookPos: Array[Node3D] = [$HookPos2, $HookPos1]
 @onready var hookHandler: HookHandler = $Hook
 
 @export var move_speed = 1.0

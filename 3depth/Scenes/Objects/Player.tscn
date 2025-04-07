@@ -1,9 +1,9 @@
-[gd_scene load_steps=21 format=3 uid="uid://cr0xponn76q5v"]
+[gd_scene load_steps=26 format=3 uid="uid://cr0xponn76q5v"]
 
 [ext_resource type="Script" uid="uid://cp0aq32jtaidl" path="res://Scripts/Player/Player.gd" id="1_7cvjj"]
+[ext_resource type="PackedScene" uid="uid://bwa6r4hdybshj" path="res://Scenes/Objects/Hook.tscn" id="2_kgsvj"]
 [ext_resource type="Texture2D" uid="uid://ub8cvclftjhy" path="res://Textures/astronaut2.png" id="2_w3k6v"]
 [ext_resource type="Texture2D" uid="uid://cvb78jy4v088q" path="res://Textures/astronaut_fall.png" id="3_d83tg"]
-[ext_resource type="PackedScene" uid="uid://bwa6r4hdybshj" path="res://Scenes/Objects/Hook.tscn" id="2_kgsvj"]
 [ext_resource type="PackedScene" uid="uid://issb8on3ob8n" path="res://Scripts/StateMachine/StateMachine.tscn" id="3_g7na3"]
 [ext_resource type="Texture2D" uid="uid://c6tornwessj7h" path="res://Textures/astronaut_walk.png" id="3_kgsvj"]
 [ext_resource type="Texture2D" uid="uid://cpsdfdi00rctx" path="res://Textures/astronaut_walk2.png" id="4_d83tg"]
@@ -127,6 +127,7 @@ fallState = NodePath("../fall")
 jumpState = NodePath("../jump")
 moveState = NodePath("../move")
 aimState = NodePath("../aim")
+animation_name = "default"
 
 [node name="move" type="Node" parent="StateMachine" node_paths=PackedStringArray("fallState", "jumpState", "idleState", "aimState")]
 script = ExtResource("5_7v0xc")
@@ -134,17 +135,20 @@ fallState = NodePath("../fall")
 jumpState = NodePath("../jump")
 idleState = NodePath("../idle")
 aimState = NodePath("../aim")
+animation_name = "run"
 
 [node name="jump" type="Node" parent="StateMachine" node_paths=PackedStringArray("fallState", "idleState", "moveState")]
 script = ExtResource("6_7ga6f")
 fallState = NodePath("../fall")
 idleState = NodePath("../idle")
 moveState = NodePath("../move")
+animation_name = "fall"
 
 [node name="fall" type="Node" parent="StateMachine" node_paths=PackedStringArray("idleState", "moveState")]
 script = ExtResource("7_qn6yv")
 idleState = NodePath("../idle")
 moveState = NodePath("../move")
+animation_name = "fall"
 
 [node name="aim" type="Node" parent="StateMachine" node_paths=PackedStringArray("idleState", "shootState", "hookHandler", "player")]
 script = ExtResource("8_w3k6v")
@@ -152,6 +156,7 @@ idleState = NodePath("../idle")
 shootState = NodePath("../shoot")
 hookHandler = NodePath("../../Hook")
 player = NodePath("../..")
+animation_name = "default"
 
 [node name="shoot" type="Node" parent="StateMachine" node_paths=PackedStringArray("idleState", "aimState", "hookState", "hookHandler")]
 script = ExtResource("10_ff814")
@@ -159,13 +164,17 @@ idleState = NodePath("../idle")
 aimState = NodePath("../aim")
 hookState = NodePath("../hook")
 hookHandler = NodePath("../../Hook")
+animation_name = "default"
 
 [node name="hook" type="Node" parent="StateMachine" node_paths=PackedStringArray("detachState", "hookHandler")]
 script = ExtResource("11_n7c1o")
 detachState = NodePath("../detach")
 hookHandler = NodePath("../../Hook")
+animation_name = "default"
 
-[node name="detach" type="Node" parent="StateMachine" node_paths=PackedStringArray("fallState", "hookHandler")]
+[node name="detach" type="Node" parent="StateMachine" node_paths=PackedStringArray("fallState", "idleState", "hookHandler")]
 script = ExtResource("12_12acn")
 fallState = NodePath("../fall")
+idleState = NodePath("../idle")
 hookHandler = NodePath("../../Hook")
+animation_name = "default"
