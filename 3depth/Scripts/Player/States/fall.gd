@@ -11,6 +11,7 @@ var hitGround = false
 func enter():
 	hitGround = false
 	lastKnowVerticalSpeed = 0
+	parent.animations.set_animation("fall")
 
 func process_physics(delta: float) -> State:
 	lastKnowVerticalSpeed = parent.velocity.y

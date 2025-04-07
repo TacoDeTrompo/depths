@@ -1,83 +1,45 @@
-[gd_scene load_steps=26 format=3 uid="uid://cr0xponn76q5v"]
+[gd_scene load_steps=21 format=3 uid="uid://cr0xponn76q5v"]
 
 [ext_resource type="Script" uid="uid://cp0aq32jtaidl" path="res://Scripts/Player/Player.gd" id="1_7cvjj"]
-[ext_resource type="Texture2D" uid="uid://bif43by4tbd76" path="res://Textures/samus sprite.png" id="2_g7na3"]
+[ext_resource type="Texture2D" uid="uid://ub8cvclftjhy" path="res://Textures/astronaut2.png" id="2_w3k6v"]
+[ext_resource type="Texture2D" uid="uid://cvb78jy4v088q" path="res://Textures/astronaut_fall.png" id="3_d83tg"]
 [ext_resource type="PackedScene" uid="uid://issb8on3ob8n" path="res://Scripts/StateMachine/StateMachine.tscn" id="3_g7na3"]
+[ext_resource type="Texture2D" uid="uid://c6tornwessj7h" path="res://Textures/astronaut_walk.png" id="3_kgsvj"]
+[ext_resource type="Texture2D" uid="uid://cpsdfdi00rctx" path="res://Textures/astronaut_walk2.png" id="4_d83tg"]
 [ext_resource type="Script" uid="uid://bapq3lfw435lx" path="res://Scripts/Player/States/idle.gd" id="4_gfoho"]
 [ext_resource type="Script" uid="uid://bmukiiuv168xf" path="res://Scripts/Player/States/move.gd" id="5_7v0xc"]
 [ext_resource type="Script" uid="uid://dbax1hlv5jyad" path="res://Scripts/Player/States/jump.gd" id="6_7ga6f"]
 [ext_resource type="Script" uid="uid://cw74piru4h11q" path="res://Scripts/Player/States/fall.gd" id="7_qn6yv"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_822sy"]
-atlas = ExtResource("2_g7na3")
-region = Rect2(42, 0, 42, 49)
+[sub_resource type="AtlasTexture" id="AtlasTexture_kgsvj"]
+atlas = ExtResource("2_w3k6v")
+region = Rect2(0, 0, 128, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_v42nc"]
-atlas = ExtResource("2_g7na3")
-region = Rect2(84, 0, 42, 49)
+[sub_resource type="AtlasTexture" id="AtlasTexture_12acn"]
+atlas = ExtResource("3_d83tg")
+region = Rect2(0, 0, 128, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_qx5hm"]
-atlas = ExtResource("2_g7na3")
-region = Rect2(126, 0, 42, 49)
+[sub_resource type="AtlasTexture" id="AtlasTexture_oej56"]
+atlas = ExtResource("3_kgsvj")
+region = Rect2(0, 0, 128, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_um3ie"]
-atlas = ExtResource("2_g7na3")
-region = Rect2(168, 0, 42, 49)
+[sub_resource type="AtlasTexture" id="AtlasTexture_ff814"]
+atlas = ExtResource("2_w3k6v")
+region = Rect2(0, 0, 128, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_s66ab"]
-atlas = ExtResource("2_g7na3")
-region = Rect2(0, 49, 42, 49)
+[sub_resource type="AtlasTexture" id="AtlasTexture_n7c1o"]
+atlas = ExtResource("4_d83tg")
+region = Rect2(0, 0, 128, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_i2ao8"]
-atlas = ExtResource("2_g7na3")
-region = Rect2(42, 49, 42, 49)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_6umt6"]
-atlas = ExtResource("2_g7na3")
-region = Rect2(84, 49, 42, 49)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_4cawp"]
-atlas = ExtResource("2_g7na3")
-region = Rect2(126, 49, 42, 49)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_qvors"]
-atlas = ExtResource("2_g7na3")
-region = Rect2(168, 49, 42, 49)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_60vn1"]
-atlas = ExtResource("2_g7na3")
-region = Rect2(210, 49, 42, 49)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_st8pv"]
-atlas = ExtResource("2_g7na3")
-region = Rect2(252, 49, 42, 49)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_kohly"]
-atlas = ExtResource("2_g7na3")
-region = Rect2(294, 49, 42, 49)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_bujtj"]
-atlas = ExtResource("2_g7na3")
-region = Rect2(336, 49, 42, 49)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_01r4k"]
-atlas = ExtResource("2_g7na3")
-region = Rect2(378, 49, 42, 49)
+[sub_resource type="AtlasTexture" id="AtlasTexture_d83tg"]
+atlas = ExtResource("2_w3k6v")
+region = Rect2(0, 0, 128, 128)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_fw2c8"]
 animations = [{
 "frames": [{
-"duration": 5.0,
-"texture": SubResource("AtlasTexture_822sy")
-}, {
-"duration": 5.0,
-"texture": SubResource("AtlasTexture_v42nc")
-}, {
-"duration": 5.0,
-"texture": SubResource("AtlasTexture_qx5hm")
-}, {
-"duration": 5.0,
-"texture": SubResource("AtlasTexture_um3ie")
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kgsvj")
 }],
 "loop": true,
 "name": &"default",
@@ -85,34 +47,24 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_s66ab")
+"texture": SubResource("AtlasTexture_12acn")
+}],
+"loop": true,
+"name": &"fall",
+"speed": 5.0
 }, {
-"duration": 1.5,
-"texture": SubResource("AtlasTexture_i2ao8")
+"frames": [{
+"duration": 5.0,
+"texture": SubResource("AtlasTexture_oej56")
 }, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_6umt6")
+"duration": 2.5,
+"texture": SubResource("AtlasTexture_ff814")
 }, {
-"duration": 1.5,
-"texture": SubResource("AtlasTexture_4cawp")
+"duration": 5.0,
+"texture": SubResource("AtlasTexture_n7c1o")
 }, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_qvors")
-}, {
-"duration": 1.5,
-"texture": SubResource("AtlasTexture_60vn1")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_st8pv")
-}, {
-"duration": 1.5,
-"texture": SubResource("AtlasTexture_kohly")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_bujtj")
-}, {
-"duration": 1.5,
-"texture": SubResource("AtlasTexture_01r4k")
+"duration": 2.5,
+"texture": SubResource("AtlasTexture_d83tg")
 }],
 "loop": true,
 "name": &"run",
@@ -123,32 +75,32 @@ animations = [{
 length = 0.234551
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_v42nc"]
-size = Vector3(0.121613, 0.336304, 0.00732422)
+size = Vector3(0.15778, 0.336304, 0.00732422)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_gfoho"]
-size = Vector3(0.121368, 0.428162, 0.00723267)
+size = Vector3(0.157852, 0.428162, 0.00723267)
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_7cvjj")
 
 [node name="Animations" type="AnimatedSprite3D" parent="."]
+transform = Transform3D(0.375, 0, 0, 0, 0.375, 0, 0, 0, 0.375, 0, 0, 0)
 texture_filter = 0
 sprite_frames = SubResource("SpriteFrames_fw2c8")
-frame = 1
-frame_progress = 0.90011
+animation = &"fall"
 
 [node name="SeparationRayFloor" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -0.000226899, -1, 0, 1, -0.000226899, 0, 0, 0)
 shape = SubResource("SeparationRayShape3D_i5e0t")
 
 [node name="BodyCollision" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0232391, 0.0285034, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00043381, 0.0285034, 0)
 shape = SubResource("BoxShape3D_v42nc")
 
 [node name="DamageCollision" type="Area3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DamageCollision"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0234528, -0.0188293, 0.000137329)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000482352, -0.0188293, 0.000137329)
 shape = SubResource("BoxShape3D_gfoho")
 debug_color = Color(0.984516, 0, 0.342813, 0.42)
 

@@ -104,10 +104,10 @@ shader_parameter/use_texture = true
 
 [sub_resource type="Curve3D" id="Curve3D_qvors"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, -1.185, 0, 0, 0, 0, 0, 0, 0, 0, 0.595, 0, 0, 0, 0, 0, 0, 0, 0, -1.185),
-"tilts": PackedFloat32Array(0, 0, 0)
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, -1.185, 0, 0, 0, 0, 0, 0, 0, 0, 0.595, 0, 0, 0, 0, 0, 0, 0, 0, -1.185, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+"tilts": PackedFloat32Array(0, 0, 0, 0)
 }
-point_count = 3
+point_count = 4
 
 [node name="Node3D" type="Node3D"]
 
