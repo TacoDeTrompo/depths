@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=4 uid="uid://c0ajeqqwyy6cq"]
+[gd_scene load_steps=13 format=4 uid="uid://c0ajeqqwyy6cq"]
 
 [ext_resource type="Script" uid="uid://i6bq7s4nngyh" path="res://Scripts/moving_block.gd" id="1_6wobr"]
 [ext_resource type="Shader" uid="uid://v1p8b2wwrsqn" path="res://Shaders/CrossSectionEffect/fillerB.gdshader" id="1_i1y1v"]
 [ext_resource type="Shader" uid="uid://tvkec53jbjgt" path="res://Shaders/CrossSectionEffect/filler.gdshader" id="2_6wobr"]
 [ext_resource type="Texture2D" uid="uid://bxh8g0hpajvvu" path="res://Textures/platforms_top.png" id="3_c3k0g"]
 [ext_resource type="Script" uid="uid://cvvnhbiffxh7f" path="res://Scripts/CrossSectionEffect/CutFillerMove.gd" id="5_c3k0g"]
+[ext_resource type="Texture2D" uid="uid://d07egeymenxut" path="res://Textures/NormalMap.png" id="5_iqf56"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_oo3gs"]
 
@@ -21,6 +22,7 @@ shader = ExtResource("2_6wobr")
 shader_parameter/fillplane = Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
 shader_parameter/_albedo = ExtResource("3_c3k0g")
 shader_parameter/border_color = Color(0, 0, 0, 1)
+shader_parameter/normal_map = ExtResource("5_iqf56")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gy3to"]
 resource_name = "Material"
