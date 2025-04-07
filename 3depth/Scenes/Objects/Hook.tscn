@@ -9,7 +9,6 @@
 size = Vector3(0.0804443, 0.0439453, 0.00561523)
 
 [node name="Hook" type="Node3D" node_paths=PackedStringArray("PosHandler", "links", "tip")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 script = ExtResource("1_kicof")
 PosHandler = NodePath("PosHandler")
 links = NodePath("PosHandler/Anchor/Links")
@@ -17,7 +16,6 @@ tip = NodePath("PosHandler/Anchor/Tip")
 shootSpeed = 2
 
 [node name="PosHandler" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="Anchor" type="Node3D" parent="PosHandler"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.01, 0, 0)
