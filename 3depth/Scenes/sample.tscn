@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://bnf205720kfvk"]
+[gd_scene load_steps=33 format=3 uid="uid://bnf205720kfvk"]
 
 [ext_resource type="Shader" uid="uid://v1p8b2wwrsqn" path="res://Shaders/CrossSectionEffect/fillerB.gdshader" id="1_jbwiv"]
 [ext_resource type="Shader" uid="uid://cirr678sbw7ey" path="res://Shaders/CRT/CRT.gdshader" id="1_qx5hm"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bxh8g0hpajvvu" path="res://Textures/platforms_top.png" id="2_lf21a"]
 [ext_resource type="Script" uid="uid://cp4fghaloyses" path="res://Scripts/CrossSectionEffect/CutFiller.gd" id="3_2b2du"]
 [ext_resource type="ArrayMesh" uid="uid://c1kn0ux3cx814" path="res://Models/BasicCube.obj" id="5_4cawp"]
+[ext_resource type="Texture2D" uid="uid://d07egeymenxut" path="res://Textures/NormalMap.png" id="5_bujtj"]
 [ext_resource type="Shader" uid="uid://bjyf4o5jhjee0" path="res://Shaders/CrossSectionEffect/mask.gdshader" id="5_i5e0t"]
 [ext_resource type="PackedScene" uid="uid://cr0xponn76q5v" path="res://Scenes/Objects/Player.tscn" id="5_v42nc"]
 [ext_resource type="Script" uid="uid://8u0vt2ewhfs4" path="res://Scripts/Z-AxisHandler/PlaneZAxis.gd" id="6_822sy"]
@@ -43,6 +44,7 @@ shader = ExtResource("1_wg51d")
 shader_parameter/fillplane = Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
 shader_parameter/_albedo = ExtResource("2_lf21a")
 shader_parameter/border_color = Color(1, 1, 1, 1)
+shader_parameter/normal_map = ExtResource("5_bujtj")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_v2cka"]
 
@@ -73,6 +75,7 @@ shader = ExtResource("1_wg51d")
 shader_parameter/fillplane = Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
 shader_parameter/_albedo = ExtResource("2_lf21a")
 shader_parameter/border_color = Color(1, 1, 1, 1)
+shader_parameter/normal_map = ExtResource("5_bujtj")
 
 [sub_resource type="BoxMesh" id="BoxMesh_qvors"]
 
