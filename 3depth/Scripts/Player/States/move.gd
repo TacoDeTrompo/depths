@@ -9,6 +9,12 @@ var idleState: State
 @export
 var aimState: State
 
+func enter() -> void:
+	super()
+	parent.animations.set_animation("run")
+	parent.animations.play()
+	
+
 func process_input(event: InputEvent) -> State:
 	if Input.is_action_just_pressed('jump') and parent.is_on_floor():
 		return jumpState
@@ -24,7 +30,7 @@ func process_physics(delta: float) -> State:
 	if movement == 0:
 		return idleState
 	
-	parent.animations.flip_h = movement < 0
+	parent.animations.flip_h = movement > 0
 	parent.velocity.x = movement
 	parent.move_and_slide()
 	
