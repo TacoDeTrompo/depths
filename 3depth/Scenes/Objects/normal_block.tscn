@@ -1,0 +1,40 @@
+[gd_scene load_steps=11 format=3 uid="uid://dr5ckyy167jso"]
+
+[ext_resource type="Script" uid="uid://cmxneatfr7r0h" path="res://Scripts/normal_platform.gd" id="1_erlno"]
+[ext_resource type="Shader" uid="uid://v1p8b2wwrsqn" path="res://Shaders/CrossSectionEffect/fillerB.gdshader" id="1_n8vgy"]
+[ext_resource type="Shader" uid="uid://tvkec53jbjgt" path="res://Shaders/CrossSectionEffect/filler.gdshader" id="2_erlno"]
+[ext_resource type="Texture2D" uid="uid://bxh8g0hpajvvu" path="res://Textures/platforms_top.png" id="3_uphas"]
+[ext_resource type="Texture2D" uid="uid://d07egeymenxut" path="res://Textures/NormalMap.png" id="5_64q6x"]
+[ext_resource type="Script" uid="uid://dvgfwys0ktjm1" path="res://Scripts/CrossSectionEffect/CutFillerNormal.gd" id="5_erlno"]
+[ext_resource type="ArrayMesh" uid="uid://c1kn0ux3cx814" path="res://Models/BasicCube.obj" id="5_uphas"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2b2du"]
+render_priority = 1
+shader = ExtResource("1_n8vgy")
+shader_parameter/color = Color(0, 1, 0, 1)
+shader_parameter/fillplane = Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lf21a"]
+render_priority = 0
+next_pass = SubResource("ShaderMaterial_2b2du")
+shader = ExtResource("2_erlno")
+shader_parameter/fillplane = Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
+shader_parameter/_albedo = ExtResource("3_uphas")
+shader_parameter/border_color = Color(1, 1, 1, 1)
+shader_parameter/normal_map = ExtResource("5_64q6x")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_v2cka"]
+
+[node name="Block" type="StaticBody3D"]
+script = ExtResource("1_erlno")
+
+[node name="Cube" type="MeshInstance3D" parent="." node_paths=PackedStringArray("parentBody")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+material_override = SubResource("ShaderMaterial_lf21a")
+mesh = ExtResource("5_uphas")
+skeleton = NodePath("../..")
+script = ExtResource("5_erlno")
+parentBody = NodePath("..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_v2cka")
