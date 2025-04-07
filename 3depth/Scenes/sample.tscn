@@ -1,9 +1,11 @@
-[gd_scene load_steps=33 format=3 uid="uid://bnf205720kfvk"]
+[gd_scene load_steps=37 format=3 uid="uid://bnf205720kfvk"]
 
+[ext_resource type="FontFile" uid="uid://dpmvml726ncvk" path="res://Fonts/retro_computer_personal_use.ttf" id="1_01r4k"]
 [ext_resource type="Shader" uid="uid://v1p8b2wwrsqn" path="res://Shaders/CrossSectionEffect/fillerB.gdshader" id="1_jbwiv"]
 [ext_resource type="Shader" uid="uid://cirr678sbw7ey" path="res://Shaders/CRT/CRT.gdshader" id="1_qx5hm"]
 [ext_resource type="Shader" uid="uid://tvkec53jbjgt" path="res://Shaders/CrossSectionEffect/filler.gdshader" id="1_wg51d"]
 [ext_resource type="Texture2D" uid="uid://bxh8g0hpajvvu" path="res://Textures/platforms_top.png" id="2_lf21a"]
+[ext_resource type="Script" uid="uid://cjsksnk57vwj7" path="res://Scripts/distance_tracker.gd" id="2_nelja"]
 [ext_resource type="Script" uid="uid://cp4fghaloyses" path="res://Scripts/CrossSectionEffect/CutFiller.gd" id="3_2b2du"]
 [ext_resource type="ArrayMesh" uid="uid://c1kn0ux3cx814" path="res://Models/BasicCube.obj" id="5_4cawp"]
 [ext_resource type="Texture2D" uid="uid://d07egeymenxut" path="res://Textures/NormalMap.png" id="5_bujtj"]
@@ -21,7 +23,15 @@
 [ext_resource type="PackedScene" uid="uid://dr5ckyy167jso" path="res://Scenes/Objects/normal_block.tscn" id="14_qvors"]
 [ext_resource type="PackedScene" uid="uid://c0ajeqqwyy6cq" path="res://Scenes/Objects/MovingBlock.tscn" id="16_st8pv"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_i2ao8"]
+[sub_resource type="LabelSettings" id="LabelSettings_nelja"]
+font = ExtResource("1_01r4k")
+font_color = Color(0, 1, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_01r4k"]
+font = ExtResource("1_01r4k")
+font_color = Color(0, 1, 0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4y50s"]
 shader = ExtResource("1_qx5hm")
 shader_parameter/resolution = Vector2(320, 180)
 shader_parameter/scan_line_amount = 0.5
@@ -94,17 +104,48 @@ shader_parameter/use_texture = true
 
 [sub_resource type="Curve3D" id="Curve3D_qvors"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, -1.185, 0, 0, 0, 0, 0, 0, 0, 0, 0.595, 0, 0, 0, 0, 0, 0, 0, 0, -1.185),
-"tilts": PackedFloat32Array(0, 0, 0)
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, -1.185, 0, 0, 0, 0, 0, 0, 0, 0, 0.595, 0, 0, 0, 0, 0, 0, 0, 0, -1.185, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+"tilts": PackedFloat32Array(0, 0, 0, 0)
 }
-point_count = 3
+point_count = 4
 
 [node name="Node3D" type="Node3D"]
 
 [node name="CRT Filter" type="CanvasLayer" parent="."]
 
+[node name="LeftBar" type="ColorRect" parent="CRT Filter"]
+offset_left = -28.0
+offset_top = -20.0
+offset_right = 356.0
+offset_bottom = 658.0
+color = Color(0, 0, 0, 1)
+
+[node name="RightBar" type="ColorRect" parent="CRT Filter"]
+offset_left = 778.0
+offset_top = -21.0
+offset_right = 1173.0
+offset_bottom = 660.0
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="CRT Filter"]
+offset_left = 857.0
+offset_right = 1081.0
+offset_bottom = 35.0
+text = "Distance Traveled"
+label_settings = SubResource("LabelSettings_nelja")
+
+[node name="DistanceTraveledNumber" type="Label" parent="CRT Filter" node_paths=PackedStringArray("player")]
+offset_left = 858.0
+offset_top = 28.0
+offset_right = 1082.0
+offset_bottom = 63.0
+text = "0.0Km"
+label_settings = SubResource("LabelSettings_01r4k")
+script = ExtResource("2_nelja")
+player = NodePath("../../Player")
+
 [node name="ColorRect" type="ColorRect" parent="CRT Filter"]
-material = SubResource("ShaderMaterial_i2ao8")
+material = SubResource("ShaderMaterial_4y50s")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
