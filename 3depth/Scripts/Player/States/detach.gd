@@ -4,7 +4,7 @@ extends State
 var fallState: State
 
 @export
-var hookRoot: Node3D
+var hookHandler: HookHandler
 
 @export var ray_length: float = 1000.0
 

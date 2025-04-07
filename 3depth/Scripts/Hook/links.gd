@@ -1,10 +1,11 @@
 @tool
+class_name Links
 extends Sprite3D
 
-@export var extended : float = 1.0
+@export var extended : float = 0
 @export var extendSpeed : float = 1.0
-@export var linkInitialOffset : float = -0.079
-@export var linkOffset : float = 0.040
+@export var linkInitialOffset : float = -0.04
+@export var linkOffset : float = 0.025
 
 
 # Called when the node enters the scene tree for the first time.

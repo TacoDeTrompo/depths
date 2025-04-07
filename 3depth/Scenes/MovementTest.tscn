@@ -1,6 +1,7 @@
 [gd_scene load_steps=20 format=3 uid="uid://f66crnu0vaca"]
 
 [ext_resource type="Shader" uid="uid://v1p8b2wwrsqn" path="res://Shaders/CrossSectionEffect/fillerB.gdshader" id="1_evltv"]
+[ext_resource type="PackedScene" uid="uid://ckwch7mgbhffv" path="res://Scenes/Objects/CRTFilter.tscn" id="1_irc8b"]
 [ext_resource type="Shader" uid="uid://tvkec53jbjgt" path="res://Shaders/CrossSectionEffect/filler.gdshader" id="2_vtgv7"]
 [ext_resource type="Texture2D" uid="uid://bxh8g0hpajvvu" path="res://Textures/platforms_top.png" id="3_cbptv"]
 [ext_resource type="Script" uid="uid://cp4fghaloyses" path="res://Scripts/CrossSectionEffect/CutFiller.gd" id="4_fsk2n"]
@@ -10,19 +11,8 @@
 [ext_resource type="Script" uid="uid://8u0vt2ewhfs4" path="res://Scripts/Z-AxisHandler/PlaneZAxis.gd" id="6_lj3dt"]
 [ext_resource type="PackedScene" uid="uid://cr0xponn76q5v" path="res://Scenes/Objects/Player.tscn" id="7_fsk2n"]
 [ext_resource type="Script" uid="uid://xl6fmx6xqjly" path="res://Scripts/Z-AxisHandler/Z-handler.gd" id="9_2ts83"]
-[ext_resource type="PackedScene" uid="uid://ckwch7mgbhffv" path="res://Scenes/Objects/CRTFilter.tscn" id="11_irc8b"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_mjynw"]
-shader = ExtResource("1_irc8b")
-shader_parameter/resolution = Vector2(320, 180)
-shader_parameter/scan_line_amount = 0.5
-shader_parameter/warp_amount = 0.05
-shader_parameter/vignette_amount = 0.5
-shader_parameter/vignette_intensity = 0.3
-shader_parameter/grille_amount = 0.05
-shader_parameter/brightness_boost = 1.2
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_gia7o"]
 render_priority = 1
 shader = ExtResource("1_evltv")
 shader_parameter/color = Color(0, 1, 0, 1)
@@ -30,7 +20,7 @@ shader_parameter/fillplane = Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lf21a"]
 render_priority = 0
-next_pass = SubResource("ShaderMaterial_gia7o")
+next_pass = SubResource("ShaderMaterial_mjynw")
 shader = ExtResource("2_vtgv7")
 shader_parameter/fillplane = Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
 shader_parameter/_albedo = ExtResource("3_cbptv")
@@ -67,6 +57,8 @@ shader_parameter/use_texture = true
 [sub_resource type="PlaneMesh" id="PlaneMesh_jbwiv"]
 
 [node name="Node3D" type="Node3D"]
+
+[node name="CRT Filter" parent="." instance=ExtResource("1_irc8b")]
 
 [node name="StaticBody3D3" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -1, 0, 0, 0, -1, -0.509294, 0, -1)
@@ -163,8 +155,8 @@ mesh = SubResource("PlaneMesh_jbwiv")
 script = ExtResource("6_lj3dt")
 zAxisHandler = NodePath("../Z-Axis")
 
-[node name="Player" parent="." node_paths=PackedStringArray("zAxisHandler") instance=ExtResource("7_fsk2n")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.428896, 0.74762, 0)
+[node name="Player" parent="." node_paths=PackedStringArray("zAxisHandler") groups=["Player"] instance=ExtResource("7_fsk2n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.350323, 0.979296, 0)
 zAxisHandler = NodePath("../Z-Axis")
 
 [node name="Camera3D" type="Camera3D" parent="."]
@@ -172,8 +164,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00022471, 0.4997, 1.96113)
 projection = 1
 size = 3.65257
 
-[node name="Z-Axis" type="Node" parent="." node_paths=PackedStringArray("player")]
+[node name="Z-Axis" type="Node" parent="."]
 script = ExtResource("9_2ts83")
-player = NodePath("../Player")
-
-[node name="CRT Filter" parent="." instance=ExtResource("11_irc8b")]
+zAxisMovementEnabled = true

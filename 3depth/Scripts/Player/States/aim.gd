@@ -5,11 +5,16 @@ var idleState: State
 var shootState: State
 
 @export
-var hookRoot: Node3D
+var hookHandler: HookHandler
 
 @export var ray_length: float = 1000.0
 
 @export var player: Player
+
+func enter() -> void:
+	super()
+	parent.velocity.x = 0
+	parent.velocity.z = 0
 
 func process_input(event: InputEvent) -> State:
 	if Input.is_action_just_released("aim"):
@@ -31,8 +36,8 @@ func process_hook(delta: float, camera: Camera3D) -> State:
 	var mouse_pos = get_viewport().get_mouse_position()
 	var world_mouse_pos = camera.project_ray_origin(mouse_pos)
 	var worldMousePos2d = Vector2(world_mouse_pos.x, world_mouse_pos.y)
-	var hookPosition2d = Vector2(hookRoot.global_position.x, hookRoot.global_position.y)
+	var hookPosition2d = Vector2(hookHandler.global_position.x, hookHandler.global_position.y)
 	
-	hookRoot.rotation.z = hookPosition2d.angle_to_point(worldMousePos2d)
+	hookHandler.rotation.z = hookPosition2d.angle_to_point(worldMousePos2d)
 	
 	return null
