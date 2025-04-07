@@ -17,15 +17,37 @@ var isActive = false
 func _physics_process(delta: float) -> void:
 	if(PosHandler != null):
 		if(isShooting): calculateShoot(delta)
-		calculateLinksAndTip()
+		
+		calculateLinksAndTip(delta)
 
-func calculateLinksAndTip():
+func calculateLinksAndTip(delta: float):
 	# Dinamically adjust links' extended based on the current PosHandler position
+	
+	if(currentLenght>=linksMaxLenght):
+		currentLenght = linksMaxLenght
+		
+	if(currentLenght<=0):
+		currentLenght=0
+		
+	if(tipLocked):
+		tipLockedMovement(delta)
+		tip.rotation_degrees.z = -rotation_degrees.z
+	
 	PosHandler.position.x = currentLenght
 	links.extended = currentLenght * 2.5 * 7.94
 
-	if(tipLocked):
-		tip.rotation_degrees.z = -PosHandler.rotation_degrees.z
+func tipLockedMovement(delta: float):
+	var beforeMovement = tip.global_position
+	var previousPosition = PosHandler.position.x
+	PosHandler.position.x = currentLenght
+	
+	var tipDifference = tip.global_position - beforeMovement
+	PosHandler.position.x = previousPosition
+	
+	var parent: Player = get_parent()
+	parent.position -= tipDifference
+	
+	pass
 
 func calculateShoot(delta: float):
 	currentLenght += shootSpeed * delta
@@ -50,3 +72,4 @@ func _on_tip_body_entered(body: Node3D) -> void:
 		return
 	didHitTarget = true
 	isShooting = false
+	tipLocked = true

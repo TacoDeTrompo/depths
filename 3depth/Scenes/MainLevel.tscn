@@ -1,10 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bo7w8gq1u5shy"]
+[gd_scene load_steps=4 format=3 uid="uid://bo7w8gq1u5shy"]
 
-[ext_resource type="FontFile" uid="uid://dpmvml726ncvk" path="res://Fonts/retro_computer_personal_use.ttf" id="1_8vsrk"]
 [ext_resource type="Shader" uid="uid://cirr678sbw7ey" path="res://Shaders/CRT/CRT.gdshader" id="1_r7jfx"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_c77c4"]
-font = ExtResource("1_8vsrk")
 font_color = Color(0, 1, 0, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8vsrk"]
