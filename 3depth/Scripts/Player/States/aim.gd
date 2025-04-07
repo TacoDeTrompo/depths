@@ -2,6 +2,7 @@ extends State
 
 @export
 var idleState: State
+@export
 var shootState: State
 
 @export
@@ -15,9 +16,11 @@ func enter() -> void:
 	super()
 	parent.velocity.x = 0
 	parent.velocity.z = 0
+	hookHandler.isActive = true
 
 func process_input(event: InputEvent) -> State:
 	if Input.is_action_just_released("aim"):
+		hookHandler.resetHook()
 		return idleState
 	if Input.is_action_just_pressed("hook"):
 		return shootState

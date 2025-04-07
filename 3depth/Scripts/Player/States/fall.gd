@@ -9,6 +9,7 @@ var lastKnowVerticalSpeed = 0
 var hitGround = false
 
 func enter():
+	super()
 	hitGround = false
 	lastKnowVerticalSpeed = 0
 

@@ -5,6 +5,8 @@ extends CharacterBody3D
 var animations = $Animations
 @onready
 var state_machine: StateMachine = $StateMachine
+@onready var HookPos: Array[Node3D] = [$HookPos1, $HookPos2]
+@onready var hookHandler: HookHandler = $Hook
 
 @export var move_speed = 1.0
 @export var jump_velocity = 3.5
@@ -40,6 +42,11 @@ func _process(delta: float) -> void:
 	if(health<=0):
 		health = 0;
 		onDeath.emit(self, zAxisHandler)
+	
+	if(!hookHandler.isActive):
+		hookHandler.position = HookPos[0].position if !animations.flip_h else HookPos[1].position
+		hookHandler.rotation = HookPos[0].rotation if !animations.flip_h else HookPos[1].rotation
+	
 	state_machine.process_frame(delta)
 
 func take_damage(dmg: int):

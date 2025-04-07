@@ -9,22 +9,25 @@
 size = Vector3(0.0804443, 0.0439453, 0.00561523)
 
 [node name="Hook" type="Node3D" node_paths=PackedStringArray("PosHandler", "links", "tip")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 script = ExtResource("1_kicof")
 PosHandler = NodePath("PosHandler")
 links = NodePath("PosHandler/Anchor/Links")
 tip = NodePath("PosHandler/Anchor/Tip")
+shootSpeed = 2
 
 [node name="PosHandler" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="Anchor" type="Node3D" parent="PosHandler"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.01, 0, 0)
 
 [node name="Links" type="Sprite3D" parent="PosHandler/Anchor"]
-transform = Transform3D(0.315, 0, 0, 0, 0.315, 0, 0, 0, 0.315, -0.015, -0.00166947, 0.000322223)
+transform = Transform3D(0.315, 0, 0, 0, 0.315, 0, 0, 0, 0.315, -0.015025, -0.00166947, 0.000322223)
 texture_filter = 0
 texture = ExtResource("1_sb1fp")
 region_enabled = true
-region_rect = Rect2(0, 0, 0, 16)
+region_rect = Rect2(0, 0, 0.016, 16)
 script = ExtResource("2_i6il5")
 
 [node name="Tip" type="Area3D" parent="PosHandler/Anchor"]
@@ -37,3 +40,5 @@ texture = ExtResource("3_i6il5")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PosHandler/Anchor/Tip"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.10352e-05, -0.000488281, 0.000366211)
 shape = SubResource("BoxShape3D_wv5t3")
+
+[connection signal="body_entered" from="PosHandler/Anchor/Tip" to="." method="_on_tip_body_entered"]

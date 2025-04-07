@@ -133,8 +133,14 @@ size = Vector3(0.121613, 0.336304, 0.00732422)
 [sub_resource type="BoxShape3D" id="BoxShape3D_gfoho"]
 size = Vector3(0.121368, 0.428162, 0.00723267)
 
-[node name="Player" type="CharacterBody3D"]
+[node name="Player" type="CharacterBody3D" groups=["Player"]]
 script = ExtResource("1_7cvjj")
+
+[node name="HookPos1" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.119278, 0.0289211, 0)
+
+[node name="HookPos2" type="Node3D" parent="."]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, -0.119, 0.029, 0)
 
 [node name="Hook" parent="." instance=ExtResource("2_kgsvj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.119278, 0.0289211, 0)
@@ -188,23 +194,26 @@ script = ExtResource("7_qn6yv")
 idleState = NodePath("../idle")
 moveState = NodePath("../move")
 
-[node name="aim" type="Node" parent="StateMachine" node_paths=PackedStringArray("idleState", "hookRoot", "player")]
+[node name="aim" type="Node" parent="StateMachine" node_paths=PackedStringArray("idleState", "shootState", "hookHandler", "player")]
 script = ExtResource("8_w3k6v")
 idleState = NodePath("../idle")
-hookRoot = NodePath("../../Hook")
+shootState = NodePath("../shoot")
+hookHandler = NodePath("../../Hook")
 player = NodePath("../..")
 
-[node name="shoot" type="Node" parent="StateMachine" node_paths=PackedStringArray("idleState", "hookRoot")]
+[node name="shoot" type="Node" parent="StateMachine" node_paths=PackedStringArray("idleState", "aimState", "hookState", "hookHandler")]
 script = ExtResource("10_ff814")
 idleState = NodePath("../idle")
-hookRoot = NodePath("../../Hook")
+aimState = NodePath("../aim")
+hookState = NodePath("../hook")
+hookHandler = NodePath("../../Hook")
 
-[node name="hook" type="Node" parent="StateMachine" node_paths=PackedStringArray("detachState", "hookRoot")]
+[node name="hook" type="Node" parent="StateMachine" node_paths=PackedStringArray("detachState", "hookHandler")]
 script = ExtResource("11_n7c1o")
 detachState = NodePath("../detach")
-hookRoot = NodePath("../../Hook")
+hookHandler = NodePath("../../Hook")
 
-[node name="detach" type="Node" parent="StateMachine" node_paths=PackedStringArray("fallState", "hookRoot")]
+[node name="detach" type="Node" parent="StateMachine" node_paths=PackedStringArray("fallState", "hookHandler")]
 script = ExtResource("12_12acn")
 fallState = NodePath("../fall")
-hookRoot = NodePath("../../Hook")
+hookHandler = NodePath("../../Hook")

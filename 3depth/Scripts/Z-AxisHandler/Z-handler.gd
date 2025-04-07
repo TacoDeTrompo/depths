@@ -1,7 +1,7 @@
 class_name ZAxisHandler
 extends Node
 
-var player: Player
+@onready var player: Player = get_tree().get_first_node_in_group("Player")
 
 @export var zAxis: float = 0.0
 @export var zSpeed: float = 0.5

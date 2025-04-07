@@ -9,7 +9,7 @@ var hookHandler: HookHandler
 @export var ray_length: float = 1000.0
 
 func process_input(event: InputEvent) -> State:
-	if Input.is_action_just_released("hook"):
+	if Input.is_action_just_pressed("hook"):
 		return detachState
 	return null
 

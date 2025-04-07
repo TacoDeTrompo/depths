@@ -15,8 +15,12 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	region_rect = Rect2(0, 0, 16 * extended, 16)
+	#TODO: Fix this in a proper way, for some reason when extended = 0 the links don't properly reset in lenght
+	var tempExtended = extended
+	if(extended == 0): tempExtended = 0.001
+	
+	region_rect = Rect2(0, 0, 16 * tempExtended, 16)
 	var currentPos = position
-	currentPos.x = linkInitialOffset - (linkOffset * (extended - 1))
+	currentPos.x = linkInitialOffset - (linkOffset * (tempExtended - 1))
 	position = currentPos
 	

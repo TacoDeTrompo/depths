@@ -155,7 +155,7 @@ mesh = SubResource("PlaneMesh_jbwiv")
 script = ExtResource("6_lj3dt")
 zAxisHandler = NodePath("../Z-Axis")
 
-[node name="Player" parent="." node_paths=PackedStringArray("zAxisHandler") groups=["Player"] instance=ExtResource("7_fsk2n")]
+[node name="Player" parent="." node_paths=PackedStringArray("zAxisHandler") instance=ExtResource("7_fsk2n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.350323, 0.979296, 0)
 zAxisHandler = NodePath("../Z-Axis")
 
